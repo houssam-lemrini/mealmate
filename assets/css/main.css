@@ -1,20 +1,62 @@
 :root {
-  /* Primary colors */
-  --color-primary: #317B22;       /* main brand/strong green */
-  --color-secondary: #62929E;     /* secondary/teal/contrast color */
+  /* Primary colours */
+  --color-primary : #3066BE;         /* the strong blue */
+  --color-secondary : #d7a74e;       /* the bold yellow/orange accent */
 
-  /* Background / surfaces */
-  --color-bg: #BCE784;            /* light lime/green background */
-  --color-bg-dark: #0A210F;       /* very dark for deep sections or footer */
+  /* Backgrounds / surfaces */
+  --color-bg-light : #CCE3DE;         /* light mint/sea-greenish for background surfaces */
+  --color-bg-dark : #343434;          /* dark grey for deep sections, footers, etc */
 
-  /* Text colors */
-  --color-text: #0A210F;          /* main text – dark green almost black for readability */
-  --color-text-inverse: #BCE784;  /* text on dark backgrounds */
+  /* Text colours */
+  --color-text : #343434;              /* dark grey, main text */
+  --color-text-on-dark : #CCE3DE;       /* text used on dark backgrounds */
 
-  /* Accent / highlights */
-  --color-accent: #62929E;        /* reuse secondary for accent components/buttons */
-  --color-accent-hover: #317B22;  /* a variation when hovered, could also do a slightly lighter/darker shade */
+  /* Accent / interactive */
+  --color-accent : #dcc290;            /* same as secondary, for buttons, highlights */
+  --color-accent-hover : #3066BE;       /* strong blue when hovering the accent */
 
-  /* Borders / subtle lines */
-  --color-border: #317B22;        /* subtle border using primary green */
+  /* Borders / lines */
+  --color-border : #3066BE;            /* border colour using primary blue */
+}
+
+.body{
+  margin: 0;
+  padding: 0;
+  
+}
+
+.home-page {
+  margin: 0;
+  padding: 0;
+  box-shadow: 0 0 30px 0 rgb(106, 105, 105);
+  background-color: var(--color-accent);
+
+  .logo-container{
+    position: relative;
+    width: 2rem;
+    height: 2rem;
+    background-color: var(--color-primary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+  .logo-container img{
+    width: 2rem;
+    height: 2rem;
+  }
+  .brand-text {
+    font-size: 0.75rem;
+    font-weight: bold;
+    color: var(--color-text);
+  }
+  .navbar{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 1rem;
+    background-color: var(--color-secondary);
+    border-bottom: 1px solid var(--color-secondary);
+  }
 }
