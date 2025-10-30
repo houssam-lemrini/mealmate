@@ -12,18 +12,107 @@
 </head>
 <body class="home-page">
     <div class="navbar">
-          <div class="navbar-brand">
+        <div class="left-nav">
+            <div class="navbar-brand">
             <div class="logo-container">
-              <img src="./assets/img/4a1oV2N3Rc2sXFPAguCfFw.jpeg" alt="">
+              <img src="./assets/img/compressed_7c2d8e17cca1cb072b14ef876b640aef.jpeg" alt="">
               <div class="logo-gradient"></div>
             </div>
           </div>
-          <div class="brand-text" style="font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-                                        color: black;
-                                        text-decoration: salmon ;">
+          <div class="brand-text" style="font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">
             <h2>MealMate</h2>
           </div>
+        </div>
+        <div class="right-nav">
+            <div class="profile">
+                <div class="avatar">
+                  <img src="./assets/img/a2020cf5-9244-4244-8b8b-46186a571545.jpg" alt="Profile">
+                </div>
+                <span class="profile-name">Profile</span>
+                <a href="./profile/index.html" aria-label="Go to profile"><i class="fa-solid fa-user"></i></a>
+            </div>
+        </div>
         
     </div>
+    <main class="hero">
+      <h1>Welcome to MealMate</h1>
+      <p>Your companion for discovering and managing delicious meals.</p>
+      
+      <div class="hero-content">
+        <div class="dumbbell-man">
+          <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+            <!-- Body -->
+            <circle cx="200" cy="180" r="50" fill="url(#bodyGradient)"/>
+            <!-- Head -->
+            <circle cx="200" cy="100" r="40" fill="url(#bodyGradient)"/>
+            <!-- Arms -->
+            <ellipse cx="140" cy="170" rx="30" ry="80" fill="url(#bodyGradient)" transform="rotate(-45 140 170)"/>
+            <ellipse cx="260" cy="170" rx="30" ry="80" fill="url(#bodyGradient)" transform="rotate(45 260 170)"/>
+            <!-- Dumbbell Left -->
+            <rect x="80" y="100" width="60" height="20" rx="10" fill="url(#dumbbellGradient)"/>
+            <circle cx="90" cy="110" r="25" fill="url(#dumbbellGradient)"/>
+            <circle cx="130" cy="110" r="25" fill="url(#dumbbellGradient)"/>
+            <!-- Dumbbell Right -->
+            <rect x="260" y="100" width="60" height="20" rx="10" fill="url(#dumbbellGradient)"/>
+            <circle cx="270" cy="110" r="25" fill="url(#dumbbellGradient)"/>
+            <circle cx="310" cy="110" r="25" fill="url(#dumbbellGradient)"/>
+            <!-- Legs -->
+            <rect x="170" y="230" width="25" height="80" rx="12" fill="url(#bodyGradient)"/>
+            <rect x="205" y="230" width="25" height="80" rx="12" fill="url(#bodyGradient)"/>
+            <!-- Eyes -->
+            <circle cx="190" cy="95" r="8" fill="#ffffff"/>
+            <circle cx="210" cy="95" r="8" fill="#ffffff"/>
+            
+            <!-- Gradients -->
+            <defs>
+              <linearGradient id="bodyGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" style="stop-color:#ffffff;stop-opacity:1" />
+                <stop offset="100%" style="stop-color:#cbd5e1;stop-opacity:1" />
+              </linearGradient>
+              <linearGradient id="dumbbellGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" style="stop-color:#ec4899;stop-opacity:1" />
+                <stop offset="50%" style="stop-color:#9333ea;stop-opacity:1" />
+                <stop offset="100%" style="stop-color:#3b82f6;stop-opacity:1" />
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+        
+        <div class="auth-buttons">
+          <a href="./login/index.html" class="btn-auth btn-primary">
+            <i class="fa-solid fa-right-to-bracket"></i>
+            Login
+          </a>
+          <a href="./signup/index.html" class="btn-auth btn-secondary">
+            <i class="fa-solid fa-user-plus"></i>
+            Sign Up
+          </a>
+        </div>
+      </div>
+    </main>
+    
+    <section class="help-section">
+      <h2>How Can We Help?</h2>
+      <p>Discover the power of MealMate with these amazing features</p>
+      
+      <div class="help-features">
+        <div class="help-card">
+          <i class="fa-solid fa-utensils"></i>
+          <h3>Meal Planning</h3>
+          <p>Plan your meals ahead with our intelligent meal planner</p>
+        </div>
+        <div class="help-card">
+          <i class="fa-solid fa-chart-line"></i>
+          <h3>Track Progress</h3>
+          <p>Monitor your nutrition goals and stay on track</p>
+        </div>
+        <div class="help-card">
+          <i class="fa-solid fa-lightbulb"></i>
+          <h3>Smart Suggestions</h3>
+          <p>Get personalized meal recommendations powered by AI</p>
+        </div>
+      </div>
+    </section>
+
 </body>
 </html>
