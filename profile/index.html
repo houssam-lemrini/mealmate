@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profil Fitness - Dashboard</title>
+    <link rel="stylesheet" href="/assets/css/profile.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+<body>
+    <div class="container">
+        <!-- Bouton de basculement thème -->
+        <button class="theme-toggle" id="themeToggle">
+            <span class="sun-icon">☀️</span>
+            <span class="moon-icon">🌙</span>
+        </button>
+
+        <!-- Carte principale du profil -->
+        <div class="profile-card">
+            <!-- Section utilisateur -->
+            <div class="user-section">
+                <div class="avatar">
+                    <img src="/assets/pic/profile.webp" alt="Avatar utilisateur" id="userAvatar">
+                </div>
+                <div class="user-info">
+                    <h1 class="username">@houssamlemrini</h1>
+                    <p class="country">Maroc 🇲🇦</p>
+                    <div class="streak" id="streakCounter">
+                        <span class="fire-icon">🔥</span>
+                        <span>Série : <span class="streak-count">65</span> jours</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section progression du poids -->
+            <div class="progress-section">
+                <h2>Progression du Poids</h2>
+                <div class="progress-ring-container">
+                <div class="progress-ring enhanced">
+                    <svg class="progress-svg" viewBox="0 0 120 120">
+                    <defs>
+                        <linearGradient id="progressGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#2563eb" />
+                        <stop offset="100%" stop-color="#10b981" />
+                        </linearGradient>
+                    </defs>
+                    <circle cx="60" cy="60" r="54" class="progress-bg"></circle>
+                    <circle cx="60" cy="60" r="54" class="progress-bar" id="progressCircle"></circle>
+                    </svg>
+
+                    <div class="progress-text">
+                    <span class="current-weight" id="currentWeight">90kg</span>
+                    <span class="goal-weight">Objectif : 79kg</span>
+                    <span class="progress-percent" id="progressPercent">0%</span>
+                    </div>
+                </div>
+</div>
+
+            </div>
+
+            <!-- Section objectifs -->
+            <div class="goals-section">
+                <h2>Vos Objectifs</h2>
+                <div class="goals-grid">
+                    <div class="goal-item">
+                        <div class="goal-icon">🎯</div>
+                        <div class="goal-info">
+                            <span class="goal-label">Cible</span>
+                            <span class="goal-value">79kg</span>
+                        </div>
+                    </div>
+                    <div class="goal-item">
+                        <div class="goal-icon">🔥</div>
+                        <div class="goal-info">
+                            <span class="goal-label">Calories</span>
+                            <span class="goal-value">1,950 cal/jour</span>
+                        </div>
+                    </div>
+                    <div class="goal-item">
+                        <div class="goal-icon">💪</div>
+                        <div class="goal-info">
+                            <span class="goal-label">Protéines</span>
+                            <span class="goal-value">98g</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bouton voir détails -->
+            <button class="view-details-btn" id="viewDetailsBtn">
+                <span>Voir les Détails</span>
+                <span class="arrow">→</span>
+            </button>
+        </div>
+    </div>
+    <!-- Popup Modal -->
+<div class="details-modal" id="detailsModal">
+  <div class="modal-content">
+    <span class="close-btn" id="closeModal">&times;</span>
+    <h2>Détails du Profil Fitness</h2>
+
+    <div class="details-grid">
+      <div class="detail-card">
+        <h4>💪 IMC (BMI)</h4>
+        <p><span id="bmiValue">24.3</span> - Poids normal</p>
+      </div>
+      <div class="detail-card">
+        <h4>⚖️ Poids de Départ</h4>
+        <p><span id="startWeight">91 kg</span></p>
+      </div>
+      <div class="detail-card">
+        <h4>🎯 Objectif</h4>
+        <p><span id="goalWeight">79 kg</span></p>
+      </div>
+      <div class="detail-card">
+        <h4>🔥 Calories quotidiennes</h4>
+        <p><span id="calories">1950 cal</span></p>
+      </div>
+      <div class="detail-card">
+        <h4>🥗 Macro Moyenne</h4>
+        <p>Protéines: 98g • Glucides: 244g • Lipides: 65g</p>
+      </div>
+      <div class="detail-card">
+  <h4>📆 Historique</h4>8
+  <div class="history-text">
+    <p><strong>Dernière mise à jour :</strong> 30 Octobre 2025</p>
+    <p><strong>Poids initial :</strong> 91 kg → <strong>Actuel :</strong> 89.2 kg</p>
+    <p><strong>Perte totale :</strong> 1.8 kg en 7 jours 🥳</p>
+    <p><strong>Moyenne journalière :</strong> -0.25 kg / jour</p>
+    <p><em>"Chaque jour un pas de plus vers ton objectif 💪"</em></p>
+  </div>
+</div>
+
+    </div>
+  </div>
+</div>
+
+    <script src="script.js"></script>
+</body>
+</html>
