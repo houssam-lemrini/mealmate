@@ -1,20 +1,14 @@
 :root {
-  /* Primary colors */
-  --color-primary: #317B22;       /* main brand/strong green */
-  --color-secondary: #62929E;     /* secondary/teal/contrast color */
-
-  /* Background / surfaces */
-  --color-bg: #BCE784;            /* light lime/green background */
-  --color-bg-dark: #0A210F;       /* very dark for deep sections or footer */
-
-  /* Text colors */
-  --color-text: #0A210F;          /* main text – dark green almost black for readability */
-  --color-text-inverse: #BCE784;  /* text on dark backgrounds */
-
-  /* Accent / highlights */
-  --color-accent: #62929E;        /* reuse secondary for accent components/buttons */
-  --color-accent-hover: #317B22;  /* a variation when hovered, could also do a slightly lighter/darker shade */
-
-  /* Borders / subtle lines */
-  --color-border: #317B22;        /* subtle border using primary green */
+  --color-primary: #2563eb;
+  --color-secondary: #f97316;
+  --color-accent: #10b981;
+  --color-bg-light: #f8fafc;
+  --color-bg-muted: #f1f5f9;
+  --color-bg-dark: #0f172a;
+  --color-text: #1e293b;
+  --color-text-light: #64748b;
+  --color-text-on-dark: #e2e8f0;
+  --radius: 14px;
+  --shadow-md: 0 8px 16px rgba(0,0,0,0.1);
+  --transition: all 0.3s ease;
 }
