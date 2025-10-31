@@ -287,6 +287,9 @@ form.sign-in-form {
   animation: none;
 }
 
+.btn-label{
+  text-align: center;
+}
 .btn.loading .btn-label { opacity: 0.85; }
 .btn.loading .btn-spinner {
   width: 16px;
@@ -364,12 +367,15 @@ form.sign-in-form {
   padding: 3rem 17% 2rem 12%;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
 }
 
 .right-panel {
   pointer-events: none;
   padding: 3rem 12% 2rem 17%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
 }
 
 .panel .content {
@@ -401,6 +407,9 @@ form.sign-in-form {
   height: 41px;
   font-weight: 600;
   font-size: 0.8rem;
+  background-color: var(--color-text);
+  display: flex;
+  text-align: center;
 }
 
 .right-panel .image,
