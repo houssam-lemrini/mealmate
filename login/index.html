@@ -1,78 +1,124 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>SignIn&SignUp</title>
+    <title>MealMate — Connexion & Inscription</title>
     <link rel="stylesheet" type="text/css" href="../assets/css/login.css" />
-    <script
-      src="https://kit.fontawesome.com/64d58efce2.js"
-      crossorigin="anonymous"
-    ></script>
-  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   </head>
   <body>
     <div class="container">
       <div class="forms-container">
         <div class="signin-signup">
-          <form action="" class="sign-in-form">
-            <h2 class="title">Sign In</h2>
+          <form action="#" class="sign-in-form" aria-label="Formulaire de connexion">
+            <h2 class="title">Connexion</h2>
+            <p class="subtitle">Votre assistant nutrition — décidez quoi manger selon vos objectifs.</p>
             <div class="input-field">
-              <i class="fas fa-user"></i>
-              <input type="text" placeholder="Username" />
+              <i class="fas fa-user" aria-hidden="true"></i>
+              <input id="signinUsername" name="username" type="text" placeholder="Nom d'utilisateur" aria-label="Nom d'utilisateur" autocomplete="username" required minlength="3" title="Votre nom d'utilisateur (au moins 3 caractères)" />
             </div>
-            <div class="input-field">
-              <i class="fas fa-lock"></i>
-              <input type="password" placeholder="Password" />
-            </div>
-            <input type="submit" value="Login" class="btn solid" />
+            <small class="helper-text">Entrez votre nom d'utilisateur MealMate.</small>
 
-            <p class="social-text">Or Sign in with social platforms</p>
+            <div class="input-field password-field">
+              <i class="fas fa-lock" aria-hidden="true"></i>
+              <input id="signinPassword" name="password" type="password" placeholder="Mot de passe" aria-label="Mot de passe" autocomplete="current-password" required minlength="6" title="Votre mot de passe (au moins 6 caractères)" />
+              <button type="button" class="toggle-password" data-target="signinPassword" aria-label="Afficher ou masquer le mot de passe">
+                <i class="far fa-eye"></i>
+              </button>
+            </div>
+            <div class="form-actions">
+              <label class="remember">
+                <input type="checkbox" id="rememberMe" name="remember" />
+                <span>Se souvenir de moi</span>
+              </label>
+              <a class="forgot-link" href="#" id="forgotPasswordLink">Mot de passe oublié ?</a>
+            </div>
+            <p class="error-text" id="signinError" aria-live="polite"></p>
+
+            <button type="submit" class="btn solid" id="signinSubmit">
+              <span class="btn-label">Connexion</span>
+              <span class="btn-spinner" aria-hidden="true"></span>
+            </button>
+
+            <div class="divider"><span>ou</span></div>
+            <p class="social-text">Connectez-vous avec</p>
             <div class="social-media">
-              <a href="#" class="social-icon">
+              <a href="#" class="social-icon" aria-label="Facebook">
                 <i class="fab fa-facebook-f"></i>
               </a>
-              <a href="#" class="social-icon">
+              <a href="#" class="social-icon" aria-label="Twitter/X">
                 <i class="fab fa-twitter"></i>
               </a>
-              <a href="#" class="social-icon">
+              <a href="#" class="social-icon" aria-label="Google">
                 <i class="fab fa-google"></i>
               </a>
-              <a href="#" class="social-icon">
+              <a href="#" class="social-icon" aria-label="LinkedIn">
                 <i class="fab fa-linkedin-in"></i>
               </a>
             </div>
           </form>
 
 
-          <form action="" class="sign-up-form">
-            <h2 class="title">Sign Up</h2>
+          <form action="#" class="sign-up-form" aria-label="Formulaire d'inscription">
+            <h2 class="title">Inscription</h2>
+            <p class="subtitle">Rejoignez MealMate et atteignez vos objectifs forme & santé.</p>
             <div class="input-field">
-              <i class="fas fa-user"></i>
-              <input type="text" placeholder="Username" />
+              <i class="fas fa-user" aria-hidden="true"></i>
+              <input id="signupUsername" name="username" type="text" placeholder="Nom d'utilisateur" aria-label="Nom d'utilisateur" autocomplete="username" required minlength="3" title="Choisissez un nom d'utilisateur (au moins 3 caractères)" />
             </div>
-            <div class="input-field">
-              <i class="fas fa-envelope"></i>
-              <input type="email" placeholder="Email" />
-            </div>
-            <div class="input-field">
-              <i class="fas fa-lock"></i>
-              <input type="password" placeholder="Password" />
-            </div>
-            <input type="submit" value="Sign Up" class="btn solid" />
+            <small class="helper-text">Visible par les autres — évitez les informations personnelles.</small>
 
-            <p class="social-text">Or Sign up with social platforms</p>
+            <div class="input-field">
+              <i class="fas fa-envelope" aria-hidden="true"></i>
+              <input id="signupEmail" name="email" type="email" placeholder="Adresse email" aria-label="Adresse email" autocomplete="email" required pattern="^[^\s@]+@[^\s@]+\.[^\s@]+$" title="Entrez une adresse email valide" />
+            </div>
+            <small class="helper-text">Nous n'utiliserons votre email que pour la connexion et la récupération.</small>
+
+            <div class="input-field password-field">
+              <i class="fas fa-lock" aria-hidden="true"></i>
+              <input id="signupPassword" name="password" type="password" placeholder="Mot de passe" aria-label="Mot de passe" autocomplete="new-password" required minlength="6" title="Au moins 6 caractères" />
+              <button type="button" class="toggle-password" data-target="signupPassword" aria-label="Afficher ou masquer le mot de passe">
+                <i class="far fa-eye"></i>
+              </button>
+            </div>
+            <div class="strength-meter" aria-hidden="false" aria-label="Indicateur de robustesse du mot de passe">
+              <div class="strength-bar" id="passwordStrengthBar"></div>
+              <span class="strength-label" id="passwordStrengthLabel">Faible</span>
+            </div>
+
+            <div class="input-field password-field">
+              <i class="fas fa-key" aria-hidden="true"></i>
+              <input id="signupConfirm" name="confirm" type="password" placeholder="Confirmer le mot de passe" aria-label="Confirmer le mot de passe" autocomplete="new-password" required minlength="6" />
+              <button type="button" class="toggle-password" data-target="signupConfirm" aria-label="Afficher ou masquer le mot de passe">
+                <i class="far fa-eye"></i>
+              </button>
+            </div>
+            <p class="error-text" id="signupError" aria-live="polite"></p>
+
+            <label class="terms">
+              <input type="checkbox" id="acceptTerms" required />
+              <span>J'accepte les <a href="#" class="link-inline">conditions d'utilisation</a> et la <a href="#" class="link-inline">politique de confidentialité</a>.</span>
+            </label>
+
+            <button type="submit" class="btn solid" id="signupSubmit">
+              <span class="btn-label">Inscription</span>
+              <span class="btn-spinner" aria-hidden="true"></span>
+            </button>
+
+            <div class="divider"><span>ou</span></div>
+            <p class="social-text">Inscrivez-vous avec</p>
             <div class="social-media">
-              <a href="#" class="social-icon">
+              <a href="#" class="social-icon" aria-label="Facebook">
                 <i class="fab fa-facebook-f"></i>
               </a>
-              <a href="#" class="social-icon">
+              <a href="#" class="social-icon" aria-label="Twitter/X">
                 <i class="fab fa-twitter"></i>
               </a>
-              <a href="#" class="social-icon">
+              <a href="#" class="social-icon" aria-label="Google">
                 <i class="fab fa-google"></i>
               </a>
-              <a href="#" class="social-icon">
+              <a href="#" class="social-icon" aria-label="LinkedIn">
                 <i class="fab fa-linkedin-in"></i>
               </a>
             </div>
@@ -83,20 +129,20 @@
 
         <div class="panel left-panel">
             <div class="content">
-                <h3>New here?</h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio minus natus est.</p>
-                <button class="btn transparent" id="sign-up-btn">Sign Up</button>
+                <h3>Nouveau ici ?</h3>
+                <p>Inscrivez-vous pour commencer à utiliser MealMate.</p>
+                <button class="btn transparent" id="sign-up-btn">Inscription</button>
             </div>
-            <img src="./img/log.svg" class="image" alt="">
+            <img src="../assets/img/burgir.png" class="image" alt="Illustration MealMate">
         </div>
 
         <div class="panel right-panel">
             <div class="content">
-                <h3>One of us?</h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio minus natus est.</p>
-                <button class="btn transparent" id="sign-in-btn">Sign In</button>
+                <h3>Déjà inscrit ?</h3>
+                <p>Connectez-vous pour accéder à votre compte.</p>
+                <button class="btn transparent" id="sign-in-btn">Connexion</button>
             </div>
-            <img src="./img/register.svg" class="image" alt="">
+            <img src="../assets/img/burgir.png" class="image" alt="Illustration MealMate">
         </div>
       </div>
     </div>
