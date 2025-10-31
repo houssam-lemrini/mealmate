@@ -113,6 +113,98 @@
         </div>
       </div>
     </section>
+    
+    <!-- FAQ Section -->
+    <section class="faq-section">
+      <h2>Frequently Asked Questions</h2>
+      <p>Everything you need to know about MealMate</p>
+      
+      <div class="faq-container">
+        <div class="faq-item">
+          <div class="faq-question">
+            <h3>How do I track my meals and calories?</h3>
+            <i class="fa-solid fa-chevron-down faq-icon"></i>
+          </div>
+          <div class="faq-answer">
+            <p>MealMate makes tracking simple! Just search for any food in our extensive database, select the portion size, and add it to your daily log. Our smart scanner also lets you quickly add packaged foods by scanning their barcode.</p>
+          </div>
+        </div>
+        
+        <div class="faq-item">
+          <div class="faq-question">
+            <h3>Can I customize my nutrition goals?</h3>
+            <i class="fa-solid fa-chevron-down faq-icon"></i>
+          </div>
+          <div class="faq-answer">
+            <p>Absolutely! MealMate allows you to set personalized daily calorie, macronutrient, and micronutrient goals based on your fitness objectives. Whether you're looking to lose weight, build muscle, or maintain, we've got you covered.</p>
+          </div>
+        </div>
+        
+        <div class="faq-item">
+          <div class="faq-question">
+            <h3>Is my data secure and private?</h3>
+            <i class="fa-solid fa-chevron-down faq-icon"></i>
+          </div>
+          <div class="faq-answer">
+            <p>Your privacy is our top priority. All your personal data and nutrition information are encrypted and stored securely. We never share your information with third parties without your explicit consent.</p>
+          </div>
+        </div>
+        
+        <div class="faq-item">
+          <div class="faq-question">
+            <h3>Does MealMate work with fitness trackers?</h3>
+            <i class="fa-solid fa-chevron-down faq-icon"></i>
+          </div>
+          <div class="faq-answer">
+            <p>Yes! MealMate integrates seamlessly with popular fitness trackers like Apple Watch, Fitbit, Garmin, and others. Sync your workout data to get a complete picture of your daily calorie balance.</p>
+          </div>
+        </div>
+        
+        <div class="faq-item">
+          <div class="faq-question">
+            <h3>Can I create and save my own recipes?</h3>
+            <i class="fa-solid fa-chevron-down faq-icon"></i>
+          </div>
+          <div class="faq-answer">
+            <p>Definitely! Our recipe builder lets you create custom recipes with multiple ingredients. Once saved, you can quickly log your entire meal with just one click, making meal prep tracking effortless.</p>
+          </div>
+        </div>
+        
+        <div class="faq-item">
+          <div class="faq-question">
+            <h3>Is there a mobile app available?</h3>
+            <i class="fa-solid fa-chevron-down faq-icon"></i>
+          </div>
+          <div class="faq-answer">
+            <p>Yes! MealMate is available on both iOS and Android. Download our app from the App Store or Google Play to track your meals on the go with all the features of our web platform.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        const faqItems = document.querySelectorAll('.faq-item');
+        
+        faqItems.forEach(item => {
+          const question = item.querySelector('.faq-question');
+          
+          question.addEventListener('click', function() {
+            const isActive = item.classList.contains('active');
+            
+            // Close all FAQ items
+            faqItems.forEach(otherItem => {
+              otherItem.classList.remove('active');
+            });
+            
+            // Open clicked item if it wasn't active
+            if (!isActive) {
+              item.classList.add('active');
+            }
+          });
+        });
+      });
+    </script>
 
 </body>
 </html>
