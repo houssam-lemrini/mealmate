@@ -61,7 +61,12 @@ form { width: 100%; display: grid; gap: 18px; }
   transition: border-color 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
   appearance: none;
 }
-.field input::placeholder, .field textarea::placeholder { color: var(--color-muted); }
+.field input::placeholder, .field textarea::placeholder { 
+  font-family: 'Poppins', sans-serif; /* or whatever font you're using */
+  font-size: 14px; /* optional */
+  color: #aaa; /* softer color */
+  font-style: normal; /* remove that ugly italic if it’s default */
+}
 .field input:focus, .field textarea:focus, .field select:focus { border-color: var(--color-border); box-shadow: 0 0 0 3px rgba(48,102,190,0.12); }
 
 /* Custom select arrow */
@@ -70,7 +75,7 @@ form { width: 100%; display: grid; gap: 18px; }
 /* Message meter */
 .meter-row { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-top: -2px; }
 .char-meter { position: relative; flex: 1; height: 6px; border-radius: 6px; background: #e5e7eb; overflow: hidden; }
-.char-meter #charProgress { position: absolute; left: 0; top: 0; bottom: 0; width: 0%; background: linear-gradient(90deg, #f59e0b, #10b981); transition: width 0.2s ease; }
+.char-meter #charProgress { position: absolute; left: 0; top: 0; bottom: 0; width: 0%; background: linear-gradient(90deg, #f59e0b, #FAA916); transition: width 0.2s ease; }
 
 .muted { color: var(--color-muted); font-size: 0.9rem; }
 .error { color: var(--color-danger); min-height: 1.2em; text-align: center; margin: -2px 0 4px; }
