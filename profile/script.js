@@ -51,46 +51,43 @@ function animateStreak() {
 
 // Animation du cercle de progression
 function animateProgressRing() {
-  // 🔢 Données simulées
-  const startWeight = 91;
-  const currentWeight = 82;
-  const goalWeight = 79;
+    const startWeight = 91;
+    const currentWeight = 90;
+    const goalWeight = 79;
 
-  // 🔮 Option : adoucir le calcul pour afficher un peu plus de progression visuelle
-  const realPercent = ((startWeight - currentWeight) / (startWeight - goalWeight)) * 100;
-  const boostedPercent = realPercent * 1.5+60; // augmente un peu la portion affichée
-  const percent = Math.min(boostedPercent, 100);
+    const totalToLose = startWeight - goalWeight;
+    const lostNow = startWeight - currentWeight;
+    const percent = (lostNow / totalToLose) * 100;
 
-  // ⚙️ Animation du cercle
-  const circumference = 339.3;
-  const offset = circumference - (percent / 100) * circumference;
-  const circle = document.getElementById("progressCircle");
-  const percentText = document.getElementById("progressPercent");
-  const currentWeightText = document.getElementById("currentWeight");
+    const circumference = 339.3;
+    const offset = circumference - (percent / 100) * circumference;
 
-  circle.style.transition = "stroke-dashoffset 1.5s ease";
-  setTimeout(() => {
-    circle.style.strokeDashoffset = offset;
-  }, 400);
+    const circle = document.getElementById("progressCircle");
+    const percentText = document.getElementById("progressPercent");
+    const currentWeightText = document.getElementById("currentWeight");
 
-  // 🧮 Animation numérique
-  let display = 0;
-  const update = setInterval(() => {
-    if (display < percent) {
-      display += 1;
-      percentText.textContent = `${Math.floor(display)}%`;
-    } else {
-      percentText.textContent = `${percent.toFixed(0)}%`;
-      clearInterval(update);
-    }
-  }, 25);
+    circle.style.transition = "stroke-dashoffset 1.5s ease";
+    setTimeout(() => {
+        circle.style.strokeDashoffset = offset;
+    }, 400);
 
-  // ✨ Petit effet de glow à la fin
-  setTimeout(() => {
-    circle.style.filter = "drop-shadow(0 0 18px rgba(16,185,129,0.8))";
-  }, 1500);
+    // Animate numeric % display
+    let display = 0;
+    const update = setInterval(() => {
+        if (display < percent) {
+            display++;
+            percentText.textContent = `${display}%`;
+        } else {
+            percentText.textContent = `${percent.toFixed(0)}%`;
+            clearInterval(update);
+        }
+    }, 25);
+
+    // Add glowing pulse when fully animated
+    setTimeout(() => {
+        circle.style.filter = "drop-shadow(0 0 15px rgba(48, 102, 190, 0.7))";
+    }, 1500);
 }
-
 
 // Animation du bouton "Voir les détails"
 function handleViewDetails() {
@@ -99,7 +96,6 @@ function handleViewDetails() {
     
     setTimeout(() => {
         viewDetailsBtn.style.transform = 'scale(1)';
-        showNotification('Loading your fitness details...');
     }, 150);
 }
 
@@ -111,22 +107,23 @@ function showNotification(message) {
         position: fixed;
         top: 25px;
         right: 25px;
-        background: var(--color-accent);
+        background: #FAA916;
         color: white;
         padding: 12px 20px;
-        border-radius: 10px;
+        border-radius: 25px;
         font-size: 0.9rem;
         font-weight: 600;
-        box-shadow: var(--shadow-md);
+        box-shadow: 0 4px 12px rgba(250, 169, 22, 0.3);
         opacity: 0;
         transform: translateY(-10px);
         transition: all 0.4s ease;
         z-index: 9999;
+        font-family: "Poppins", sans-serif;
     `;
     
     document.body.appendChild(notification);
 
-    // Animation d’apparition
+    // Animation d'apparition
     setTimeout(() => {
         notification.style.opacity = '1';
         notification.style.transform = 'translateY(0)';
@@ -140,72 +137,23 @@ function showNotification(message) {
     }, 2500);
 }
 
-// Initialisation
-window.addEventListener('DOMContentLoaded', () => {
-    initTheme();
-    animateStreak();
-    animateProgressRing();
-
-    // Événements
-    themeToggle.addEventListener('click', toggleTheme);
-    viewDetailsBtn.addEventListener('click', handleViewDetails);
-});
-function animateProgressRing() {
-  const currentWeight = 90;
-  const goalWeight = 79;
-  const startWeight = 91;
-
-  const totalToLose = startWeight - goalWeight;
-  const lostNow = startWeight - currentWeight;
-  const percent = (lostNow / totalToLose) * 100;
-
-  const circumference = 339.3;
-  const offset = circumference - (percent / 100) * circumference;
-
-  const circle = document.getElementById("progressCircle");
-  const percentText = document.getElementById("progressPercent");
-  const currentWeightText = document.getElementById("currentWeight");
-
-  circle.style.transition = "stroke-dashoffset 1.5s ease";
-  setTimeout(() => {
-    circle.style.strokeDashoffset = offset;
-  }, 400);
-
-  // Animate numeric % display
-  let display = 0;
-  const update = setInterval(() => {
-    if (display < percent) {
-      display++;
-      percentText.textContent = `${display}%`;
-    } else {
-      percentText.textContent = `${percent.toFixed(0)}%`;
-      clearInterval(update);
-    }
-  }, 25);
-
-  // Add glowing pulse when fully animated
-  setTimeout(() => {
-    circle.style.filter = "drop-shadow(0 0 15px rgba(16,185,129,0.7))";
-  }, 1500);
-}
 // === Popup Modal Logic ===
 const detailsModal = document.getElementById('detailsModal');
 const closeModal = document.getElementById('closeModal');
 const viewDetails = document.getElementById('viewDetailsBtn');
 
 viewDetails.addEventListener('click', () => {
-  detailsModal.classList.add('active');
-  showNotification("Affichage des détails du profil...");
-  loadChart();
+    detailsModal.classList.add('active');
+    showNotification("Affichage des détails du profil...");
 });
 
 closeModal.addEventListener('click', () => {
-  detailsModal.classList.remove('active');
+    detailsModal.classList.remove('active');
 });
 
 // Fermer la popup en cliquant en dehors
 window.addEventListener('click', (e) => {
-  if (e.target === detailsModal) detailsModal.classList.remove('active');
+    if (e.target === detailsModal) detailsModal.classList.remove('active');
 });
 
 // === Simple Weight History Chart ===
@@ -241,3 +189,89 @@ function loadChart() {
 }
 document.querySelector('.history-text p:nth-child(3)').innerHTML =
   `<strong>Perte totale :</strong> ${(91 - 89.2).toFixed(1)} kg en 7 jours 🥳`;
+
+// Animate meal prep stats
+function animateMealPrepStats() {
+    const timeSaved = document.getElementById('timeSaved');
+    const moneySaved = document.getElementById('moneySaved');
+    const goalsHit = document.getElementById('goalsHit');
+    const mealsPrepped = document.getElementById('mealsPrepped');
+    const mealPrepStreak = document.getElementById('mealPrepStreak');
+
+    // Animate time saved
+    animateValue(timeSaved, 0, 8.5, 1500, 1);
+    
+    // Animate money saved
+    animateValue(moneySaved, 0, 127, 1500, 0);
+    
+    // Animate goals hit
+    animateValue(goalsHit, 0, 94, 1500, 0);
+    
+    // Animate meals prepped
+    animateValue(mealsPrepped, 0, 24, 1500, 0);
+    
+    // Animate meal prep streak
+    animateValue(mealPrepStreak, 0, 12, 1500, 0);
+}
+
+function animateValue(element, start, end, duration, decimals) {
+    const startTime = performance.now();
+    const range = end - start;
+    
+    function update(currentTime) {
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        const current = start + (range * progress);
+        
+        if (decimals > 0) {
+            element.textContent = current.toFixed(decimals);
+        } else {
+            element.textContent = Math.floor(current);
+        }
+        
+        if (progress < 1) {
+            requestAnimationFrame(update);
+        } else {
+            if (decimals > 0) {
+                element.textContent = end.toFixed(decimals);
+            } else {
+                element.textContent = end;
+            }
+        }
+    }
+    
+    requestAnimationFrame(update);
+}
+
+// Animate calorie progress bar
+function animateCalorieBar() {
+    const progressBar = document.querySelector('.calorie-progress');
+    const totalCalories = 1950;
+    const consumedCalories = 1520;
+    const percentage = (consumedCalories / totalCalories) * 100;
+    
+    setTimeout(() => {
+        progressBar.style.width = percentage + '%';
+    }, 500);
+}
+
+// Initialize everything
+window.addEventListener('DOMContentLoaded', () => {
+    initTheme();
+    animateStreak();
+    animateProgressRing();
+    animateMealPrepStats();
+    animateCalorieBar();
+
+    // Événements
+    themeToggle.addEventListener('click', toggleTheme);
+    viewDetailsBtn.addEventListener('click', handleViewDetails);
+
+    // Add click handlers for recipe cards
+    document.querySelectorAll('.recipe-card').forEach(card => {
+        card.addEventListener('click', () => {
+            const recipeName = card.querySelector('.recipe-name').textContent;
+            showNotification(`Ouverture de ${recipeName}...`);
+        });
+    });
+});

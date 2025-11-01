@@ -3,85 +3,185 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profil Fitness - Dashboard</title>
-    <link rel="stylesheet" href="/assets/css/profile.css">
+    <title>Profil Fitness - MealMate</title>
+    <link rel="stylesheet" href="../assets/css/profile.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
 </head>
 <body>
     <div class="container">
-        <!-- Bouton de basculement thème -->
-        <button class="theme-toggle" id="themeToggle">
-            <span class="sun-icon">☀️</span>
-            <span class="moon-icon">🌙</span>
+        <!-- Theme Toggle Button -->
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+            <i class="fas fa-sun sun-icon"></i>
+            <i class="fas fa-moon moon-icon"></i>
         </button>
 
-        <!-- Carte principale du profil -->
+        <!-- Main Profile Card -->
         <div class="profile-card">
-            <!-- Section utilisateur -->
+            <!-- User Section -->
             <div class="user-section">
                 <div class="avatar">
-                    <img src="/assets/pic/profile.webp" alt="Avatar utilisateur" id="userAvatar">
+                    <img src="../assets/pic/profile.webp" alt="Avatar utilisateur" id="userAvatar">
                 </div>
                 <div class="user-info">
                     <h1 class="username">@houssamlemrini</h1>
                     <p class="country">Maroc 🇲🇦</p>
                     <div class="streak" id="streakCounter">
-                        <span class="fire-icon">🔥</span>
+                        <i class="fas fa-fire fire-icon"></i>
                         <span>Série : <span class="streak-count">65</span> jours</span>
                     </div>
                 </div>
             </div>
 
-            <!-- Section progression du poids -->
-            <div class="progress-section">
-                <h2>Progression du Poids</h2>
-                <div class="progress-ring-container">
-                <div class="progress-ring enhanced">
-                    <svg class="progress-svg" viewBox="0 0 120 120">
-                    <defs>
-                        <linearGradient id="progressGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" stop-color="#2563eb" />
-                        <stop offset="100%" stop-color="#10b981" />
-                        </linearGradient>
-                    </defs>
-                    <circle cx="60" cy="60" r="54" class="progress-bg"></circle>
-                    <circle cx="60" cy="60" r="54" class="progress-bar" id="progressCircle"></circle>
-                    </svg>
-
-                    <div class="progress-text">
-                    <span class="current-weight" id="currentWeight">90kg</span>
-                    <span class="goal-weight">Objectif : 79kg</span>
-                    <span class="progress-percent" id="progressPercent">0%</span>
+            <!-- Meal Prep Streak -->
+            <div class="meal-prep-streak">
+                <div class="streak-badge">
+                    <i class="fas fa-utensils"></i>
+                    <div class="streak-info">
+                        <span class="streak-label">Meal Prep Streak</span>
+                        <span class="streak-days"><span id="mealPrepStreak">12</span> semaines</span>
                     </div>
                 </div>
-</div>
-
+                <div class="meals-prepped">
+                    <span class="meals-count"><span id="mealsPrepped">24</span> repas</span>
+                    <span class="meals-label">préparés cette semaine</span>
+                </div>
             </div>
 
-            <!-- Section objectifs -->
+            <!-- Today's Meals -->
+            <div class="todays-meals-section">
+                <h2 class="section-title">
+                    <i class="fas fa-calendar-day"></i> Repas d'Aujourd'hui
+                </h2>
+                <div class="meals-list">
+                    <div class="meal-item">
+                        <div class="meal-icon breakfast">
+                            <i class="fas fa-sun"></i>
+                        </div>
+                        <div class="meal-details">
+                            <span class="meal-name">Petit-déjeuner</span>
+                            <span class="meal-food">Oeufs brouillés + Avoine</span>
+                        </div>
+                        <span class="meal-calories">420 cal</span>
+                    </div>
+                    <div class="meal-item">
+                        <div class="meal-icon lunch">
+                            <i class="fas fa-sun"></i>
+                        </div>
+                        <div class="meal-details">
+                            <span class="meal-name">Déjeuner</span>
+                            <span class="meal-food">Poulet grillé + Riz</span>
+                        </div>
+                        <span class="meal-calories">580 cal</span>
+                    </div>
+                    <div class="meal-item">
+                        <div class="meal-icon dinner">
+                            <i class="fas fa-moon"></i>
+                        </div>
+                        <div class="meal-details">
+                            <span class="meal-name">Dîner</span>
+                            <span class="meal-food">Saumon + Légumes</span>
+                        </div>
+                        <span class="meal-calories">520 cal</span>
+                    </div>
+                </div>
+                <div class="daily-total">
+                    <span>Total: <strong>1,520 cal</strong> / 1,950 cal</span>
+                    <div class="calorie-bar">
+                        <div class="calorie-progress" style="width: 78%"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Weight Progress Section -->
+            <div class="progress-section">
+                <h2 class="section-title">Progression du Poids</h2>
+                <div class="progress-ring-container">
+                    <div class="progress-ring enhanced">
+                        <svg class="progress-svg" viewBox="0 0 120 120">
+                            <defs>
+                                <linearGradient id="progressGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="#3066BE" />
+                                    <stop offset="100%" stop-color="#FAA916" />
+                                </linearGradient>
+                            </defs>
+                            <circle cx="60" cy="60" r="54" class="progress-bg"></circle>
+                            <circle cx="60" cy="60" r="54" class="progress-bar" id="progressCircle"></circle>
+                        </svg>
+                        <div class="progress-text">
+                            <span class="current-weight" id="currentWeight">90kg</span>
+                            <span class="goal-weight">Objectif : 79kg</span>
+                            <span class="progress-percent" id="progressPercent">0%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Meal Prep Stats -->
+            <div class="meal-prep-stats">
+                <h2 class="section-title">
+                    <i class="fas fa-chart-line"></i> Stats Meal Prep
+                </h2>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="stat-info">
+                            <span class="stat-value"><span id="timeSaved">8.5</span>h</span>
+                            <span class="stat-label">Temps économisé</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-dollar-sign"></i>
+                        </div>
+                        <div class="stat-info">
+                            <span class="stat-value">€<span id="moneySaved">127</span></span>
+                            <span class="stat-label">Économies</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <div class="stat-info">
+                            <span class="stat-value"><span id="goalsHit">94</span>%</span>
+                            <span class="stat-label">Objectifs atteints</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Goals Section -->
             <div class="goals-section">
-                <h2>Vos Objectifs</h2>
+                <h2 class="section-title">Vos Objectifs</h2>
                 <div class="goals-grid">
                     <div class="goal-item">
-                        <div class="goal-icon">🎯</div>
+                        <div class="goal-icon">
+                            <i class="fas fa-bullseye"></i>
+                        </div>
                         <div class="goal-info">
                             <span class="goal-label">Cible</span>
                             <span class="goal-value">79kg</span>
                         </div>
                     </div>
                     <div class="goal-item">
-                        <div class="goal-icon">🔥</div>
+                        <div class="goal-icon">
+                            <i class="fas fa-fire"></i>
+                        </div>
                         <div class="goal-info">
                             <span class="goal-label">Calories</span>
                             <span class="goal-value">1,950 cal/jour</span>
                         </div>
                     </div>
                     <div class="goal-item">
-                        <div class="goal-icon">💪</div>
+                        <div class="goal-icon">
+                            <i class="fas fa-dumbbell"></i>
+                        </div>
                         <div class="goal-info">
                             <span class="goal-label">Protéines</span>
                             <span class="goal-value">98g</span>
@@ -90,54 +190,118 @@
                 </div>
             </div>
 
-            <!-- Bouton voir détails -->
-            <button class="view-details-btn" id="viewDetailsBtn">
-                <span>Voir les Détails</span>
-                <span class="arrow">→</span>
+            <!-- Favorite Recipes -->
+            <div class="favorites-section">
+                <h2 class="section-title">
+                    <i class="fas fa-heart"></i> Recettes Favorites
+                </h2>
+                <div class="recipes-grid">
+                    <div class="recipe-card">
+                        <div class="recipe-icon">
+                            <i class="fas fa-fish"></i>
+                        </div>
+                        <div class="recipe-info">
+                            <span class="recipe-name">Saumon Teriyaki</span>
+                            <span class="recipe-stats">420 cal • 35g P</span>
+                        </div>
+                        <i class="fas fa-chevron-right"></i>
+                    </div>
+                    <div class="recipe-card">
+                        <div class="recipe-icon">
+                            <i class="fas fa-drumstick-bite"></i>
+                        </div>
+                        <div class="recipe-info">
+                            <span class="recipe-name">Poulet BBQ</span>
+                            <span class="recipe-stats">380 cal • 42g P</span>
+                        </div>
+                        <i class="fas fa-chevron-right"></i>
+                    </div>
+                    <div class="recipe-card">
+                        <div class="recipe-icon">
+                            <i class="fas fa-leaf"></i>
+                        </div>
+                        <div class="recipe-info">
+                            <span class="recipe-name">Bowl Végétarien</span>
+                            <span class="recipe-stats">350 cal • 18g P</span>
+                        </div>
+                        <i class="fas fa-chevron-right"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Meal Prep Badges -->
+            <div class="badges-section">
+                <h2 class="section-title">
+                    <i class="fas fa-medal"></i> Badges
+                </h2>
+                <div class="badges-container">
+                    <div class="badge earned">
+                        <i class="fas fa-trophy"></i>
+                        <span>Meal Prep Pro</span>
+                    </div>
+                    <div class="badge earned">
+                        <i class="fas fa-star"></i>
+                        <span>12 Semaines</span>
+                    </div>
+                    <div class="badge earned">
+                        <i class="fas fa-fire"></i>
+                        <span>Streak Master</span>
+                    </div>
+                    <div class="badge locked">
+                        <i class="fas fa-lock"></i>
+                        <span>100 Repas</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- View Details Button -->
+            <button class="btn solid view-details-btn" id="viewDetailsBtn">
+                <span class="btn-label">Voir les Détails</span>
+                <i class="fas fa-arrow-right arrow"></i>
             </button>
         </div>
     </div>
-    <!-- Popup Modal -->
-<div class="details-modal" id="detailsModal">
-  <div class="modal-content">
-    <span class="close-btn" id="closeModal">&times;</span>
-    <h2>Détails du Profil Fitness</h2>
 
-    <div class="details-grid">
-      <div class="detail-card">
-        <h4>💪 IMC (BMI)</h4>
-        <p><span id="bmiValue">24.3</span> - Poids normal</p>
-      </div>
-      <div class="detail-card">
-        <h4>⚖️ Poids de Départ</h4>
-        <p><span id="startWeight">91 kg</span></p>
-      </div>
-      <div class="detail-card">
-        <h4>🎯 Objectif</h4>
-        <p><span id="goalWeight">79 kg</span></p>
-      </div>
-      <div class="detail-card">
-        <h4>🔥 Calories quotidiennes</h4>
-        <p><span id="calories">1950 cal</span></p>
-      </div>
-      <div class="detail-card">
-        <h4>🥗 Macro Moyenne</h4>
-        <p>Protéines: 98g • Glucides: 244g • Lipides: 65g</p>
-      </div>
-      <div class="detail-card">
-  <h4>📆 Historique</h4>8
-  <div class="history-text">
-    <p><strong>Dernière mise à jour :</strong> 30 Octobre 2025</p>
-    <p><strong>Poids initial :</strong> 91 kg → <strong>Actuel :</strong> 89.2 kg</p>
-    <p><strong>Perte totale :</strong> 1.8 kg en 7 jours 🥳</p>
-    <p><strong>Moyenne journalière :</strong> -0.25 kg / jour</p>
-    <p><em>"Chaque jour un pas de plus vers ton objectif 💪"</em></p>
-  </div>
-</div>
+    <!-- Details Modal -->
+    <div class="details-modal" id="detailsModal">
+        <div class="modal-content">
+            <span class="close-btn" id="closeModal">&times;</span>
+            <h2>Détails du Profil Fitness</h2>
 
+            <div class="details-grid">
+                <div class="detail-card">
+                    <h4><i class="fas fa-heartbeat"></i> IMC (BMI)</h4>
+                    <p><span id="bmiValue">24.3</span> - Poids normal</p>
+                </div>
+                <div class="detail-card">
+                    <h4><i class="fas fa-weight"></i> Poids de Départ</h4>
+                    <p><span id="startWeight">91 kg</span></p>
+                </div>
+                <div class="detail-card">
+                    <h4><i class="fas fa-bullseye"></i> Objectif</h4>
+                    <p><span id="goalWeight">79 kg</span></p>
+                </div>
+                <div class="detail-card">
+                    <h4><i class="fas fa-fire"></i> Calories quotidiennes</h4>
+                    <p><span id="calories">1950 cal</span></p>
+                </div>
+                <div class="detail-card">
+                    <h4><i class="fas fa-chart-pie"></i> Macro Moyenne</h4>
+                    <p>Protéines: 98g • Glucides: 244g • Lipides: 65g</p>
+                </div>
+                <div class="detail-card">
+                    <h4><i class="fas fa-history"></i> Historique</h4>
+                    <div class="history-text">
+                        <p><strong>Dernière mise à jour :</strong> 30 Octobre 2025</p>
+                        <p><strong>Poids initial :</strong> 91 kg → <strong>Actuel :</strong> 89.2 kg</p>
+                        <p><strong>Perte totale :</strong> 1.8 kg en 7 jours 🥳</p>
+                        <p><strong>Moyenne journalière :</strong> -0.25 kg / jour</p>
+                        <p><em>"Chaque jour un pas de plus vers ton objectif 💪"</em></p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
-</div>
 
     <script src="script.js"></script>
 </body>
