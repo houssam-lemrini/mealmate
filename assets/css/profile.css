@@ -103,7 +103,7 @@ body {
   height: 80px;
   border-radius: 50%;
   margin: 0 auto 15px;
-  overflow: hidden;
+  overflow: 
   border: 3px solid var(--color-primary);
   box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
 }
