@@ -224,18 +224,59 @@ body::before {
   display: flex;
   align-items: center;
   justify-content: center;
-  animation: float 3s ease-in-out infinite;
+  /* kept for backward compatibility but replaced by .athlete-salad */
 }
 
-@keyframes float {
+/* New athlete + salad composition */
+.athlete-salad{
+  width: 360px;
+  max-width: 100%;
+  height: auto;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: float-slow 4s ease-in-out infinite;
+}
+
+.athlete-salad .athlete-svg{
+  width: 320px;
+  height: auto;
+  display: block;
+  filter: drop-shadow(0 10px 24px rgba(0,0,0,0.18));
+}
+
+.athlete-salad .salad-overlay{
+  position: absolute;
+  width: 110px;
+  height: auto;
+  left: 60%; /* tuned to sit over hands — adjust if needed */
+  bottom: 36%;
+  transform-origin: 50% 60%;
+  will-change: transform;
+  animation: hand-bob 2.6s ease-in-out infinite,
+             salad-sway 6s ease-in-out infinite;
+  border-radius: 10px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.22);
+}
+
+@keyframes float-slow {
   0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-20px); }
+  50% { transform: translateY(-12px); }
 }
 
-.dumbbell-man svg {
-  width: 100%;
-  height: 100%;
-  filter: drop-shadow(0 0 18px rgba(0,0,0,0.15));
+@keyframes hand-bob {
+  0% { transform: translateY(0) rotate(-6deg); }
+  50% { transform: translateY(-8px) rotate(6deg); }
+  100% { transform: translateY(0) rotate(-6deg); }
+}
+
+@keyframes salad-sway {
+  0% { transform: translateX(0) rotate(-2deg); }
+  25% { transform: translateX(-3px) rotate(0deg); }
+  50% { transform: translateX(0) rotate(2deg); }
+  75% { transform: translateX(3px) rotate(0deg); }
+  100% { transform: translateX(0) rotate(-2deg); }
 }
 
 .auth-buttons {
@@ -454,4 +495,73 @@ body::before {
   color: var(--color-text-light);
   line-height: 1.6;
   text-align: left;
+}
+
+.tracking-msg{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: 6rem auto;
+  padding: 3.5rem 2rem;
+  text-align: center;
+  position: relative;
+  /* fallback then gradient using root tokens */
+  background: var(--color-primary);
+  background: var(--gradient-primary);
+  color: #fff;
+  max-width: 1100px;
+  border-radius: 14px;
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.tracking-msg h1{
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  margin: 0 0 0.25rem 0;
+  color: var(--color-bg-light);
+  font-weight: 700;
+  letter-spacing: 0.2px;
+  text-shadow: 0 6px 18px rgba(0,0,0,0.25);
+}
+
+.tracking-msg-card img{
+  width: 25rem;
+  height: 25rem;
+  object-fit: cover;
+    width: 100%;
+    max-width: 420px;
+    height: auto;
+    object-fit: cover;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.22);
+    border: 1px solid rgba(255,255,255,0.08);
+    display: block;
+    margin: 0 auto;
+}
+
+/* Layout: side-by-side on larger screens */
+@media (min-width: 900px) {
+  .tracking-msg{
+    flex-direction: row;
+    align-items: center;
+    padding: 3.5rem;
+  }
+
+  .tracking-msg .tracking-msg-card{
+    flex: 0 0 48%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .tracking-msg .tracking-text{
+    flex: 1 1 52%;
+    text-align: left;
+    padding-left: 2rem;
+  }
 }
