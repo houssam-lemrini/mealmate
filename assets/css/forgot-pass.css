@@ -1,0 +1,38 @@
+/* forgot-pass.css
+   Small page-specific overrides for the "Mot de passe oublié" page.
+   The page still relies on `login.css` for the main layout and animations.
+*/
+
+/* Make sure the title and subtitle spacing feel right for the single-field form */
+.sign-in-form .title {
+  font-size: 2.1rem;
+  margin-bottom: 6px;
+}
+
+.sign-in-form .subtitle {
+  font-size: 0.95rem;
+  color: var(--color-muted);
+  margin-bottom: 12px;
+}
+
+/* Slightly tighten helper text spacing */
+.sign-in-form .helper-text {
+  margin-top: -2px;
+  margin-bottom: 8px;
+}
+
+/* Make the social area a bit smaller on this page */
+.sign-in-form .social-text {
+  font-size: 0.9rem;
+}
+
+/* Keep panels imagery proportionate */
+.panels-container .image {
+  width: 72%;
+}
+
+/* Responsive tweak: keep form comfortably readable on small screens */
+@media (max-width: 570px) {
+  .sign-in-form .title { font-size: 1.6rem; }
+  .sign-in-form .subtitle { font-size: 0.8rem; }
+}

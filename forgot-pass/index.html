@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MealMate — Mot de passe oublié</title>
+  <link rel="stylesheet" type="text/css" href="../assets/css/login.css" />
+  <link rel="stylesheet" type="text/css" href="../assets/css/forgot-pass.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  </head>
+  <body>
+    <div class="container">
+      <div class="forms-container">
+        <div class="signin-signup">
+          <form action="#" class="sign-in-form" aria-label="Formulaire de réinitialisation">
+            <h2 class="title">Mot de passe oublié</h2>
+            <p class="subtitle">Entrez l'email associé à votre compte pour recevoir un lien de réinitialisation.</p>
+
+            <div class="input-field">
+              <i class="fas fa-envelope" aria-hidden="true"></i>
+              <input id="forgotEmail" name="email" type="email" placeholder="Adresse email" aria-label="Adresse email" autocomplete="email" required pattern="^[^\s@]+@[^\s@]+\.[^\s@]+$" title="Entrez une adresse email valide" />
+            </div>
+            <small class="helper-text">Nous enverrons un lien si l'adresse est associée à un compte MealMate.</small>
+
+            <p class="error-text" id="forgotError" aria-live="polite"></p>
+
+            <button type="submit" class="btn solid" id="forgotSubmit">
+              <span class="btn-label">Envoyer le lien</span>
+              <span class="btn-spinner" aria-hidden="true"></span>
+            </button>
+
+            <div class="divider"><span>ou</span></div>
+            <p class="social-text">Se connecter avec</p>
+            <div class="social-media">
+              <a href="#" class="social-icon" aria-label="Facebook">
+                <i class="fab fa-facebook-f"></i>
+              </a>
+              <a href="#" class="social-icon" aria-label="Twitter/X">
+                <i class="fab fa-twitter"></i>
+              </a>
+              <a href="#" class="social-icon" aria-label="Google">
+                <i class="fab fa-google"></i>
+              </a>
+              <a href="#" class="social-icon" aria-label="LinkedIn">
+                <i class="fab fa-linkedin-in"></i>
+              </a>
+            </div>
+          </form>
+
+          <!-- keep a placeholder sign-up form so layout/animations remain compatible with login.js -->
+          <form action="#" class="sign-up-form" aria-hidden="true"></form>
+        </div>
+      </div>
+
+      <div class="panels-container">
+
+        <div class="panel left-panel">
+            <div class="content">
+                <h3>Besoin d'aide ?</h3>
+                <p>Nous pouvons vous envoyer un lien pour réinitialiser votre mot de passe.</p>
+                <button class="btn transparent" id="sign-up-btn">Inscription</button>
+            </div>
+            <img src="../assets/img/burgir.png" class="image" alt="Illustration MealMate">
+        </div>
+
+        <div class="panel right-panel">
+            <div class="content">
+                <h3>Retour à la connexion</h3>
+                <p>Vous vous souvenez de votre mot de passe ? Connectez-vous.</p>
+                <a href="../login/index.html" class="btn transparent" id="sign-in-btn">Connexion</a>
+            </div>
+            <img src="../assets/img/burgir.png" class="image" alt="Illustration MealMate">
+        </div>
+      </div>
+    </div>
+
+    <script src="../assets/js/login.js"></script>
+    <script>
+      // small page-specific behavior: show a quick message on submit
+      document.querySelector('.sign-in-form').addEventListener('submit', function(e){
+        e.preventDefault();
+        const error = document.getElementById('forgotError');
+        const btn = document.getElementById('forgotSubmit');
+        if (btn) btn.classList.add('loading');
+        if (error) error.textContent = 'Si un compte existe, un e-mail de réinitialisation a été envoyé.';
+        setTimeout(()=>{ if (btn) btn.classList.remove('loading'); }, 900);
+      });
+    </script>
+  </body>
+</html>
