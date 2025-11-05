@@ -10,6 +10,14 @@ sign_in_btn.addEventListener('click', () =>{
     container.classList.remove("sign-up-mode");
 });
 
+window.addEventListener("DOMContentLoaded", () => {
+  // if the url end with #signup, switch to sign up view
+  if (window.location.hash === "#signup") {
+    const signUpBtn = document.getElementById("sign-up-btn");
+    if (signUpBtn) signUpBtn.click();
+  }
+});
+
 // Toggle password visibility
 function bindPasswordToggles() {
   document.querySelectorAll('.toggle-password').forEach(btn => {
