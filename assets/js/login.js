@@ -95,19 +95,6 @@ function bindFormLoading() {
   });
 }
 
-// Forgot password (demo)
-function bindForgotPassword() {
-  const link = document.getElementById('forgotPasswordLink');
-  const error = document.getElementById('signinError');
-  const emailLike = document.getElementById('signinUsername');
-  if (!link) return;
-  link.addEventListener('click', (e) => {
-    e.preventDefault();
-    if (error) error.textContent = "Lien de réinitialisation envoyé si le compte existe.";
-    setTimeout(() => { if (error) error.textContent = ''; }, 2000);
-  });
-}
-
 // Init
 bindPasswordToggles();
 bindPasswordStrength();
