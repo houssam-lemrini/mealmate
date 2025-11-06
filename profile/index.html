@@ -19,246 +19,283 @@
             <i class="fas fa-moon moon-icon"></i>
         </button>
 
-        <!-- Main Profile Card -->
-        <div class="profile-card">
-            <!-- User Section -->
-            <div class="user-section">
-                <div class="avatar">
-                    <img src="../assets/pic/profile.webp" alt="Avatar utilisateur" id="userAvatar">
-                </div>
-                <div class="user-info">
-                    <h1 class="username">@houssamlemrini</h1>
-                    <p class="country">Maroc 🇲🇦</p>
-                    <div class="streak" id="streakCounter">
-                        <i class="fas fa-fire fire-icon"></i>
-                        <span>Série : <span class="streak-count">65</span> jours</span>
+        <!-- Main Content Grid (Desktop Layout) -->
+        <div class="profile-grid">
+            <!-- Left Column -->
+            <div class="left-column">
+                <!-- Main Profile Card -->
+                <div class="profile-card">
+                    <!-- User Section -->
+                    <div class="user-section">
+                        <div class="avatar">
+                            <img src="../assets/pic/profile.webp" alt="Avatar utilisateur" id="userAvatar">
+                        </div>
+                        <div class="user-info">
+                            <h1 class="username">@houssamlemrini</h1>
+                            <p class="country">Maroc 🇲🇦</p>
+                            <div class="streak" id="streakCounter">
+                                <i class="fas fa-fire fire-icon"></i>
+                                <span>Série : <span class="streak-count">65</span> jours</span>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
 
-            <!-- Meal Prep Streak -->
-            <div class="meal-prep-streak">
-                <div class="streak-badge">
-                    <i class="fas fa-utensils"></i>
-                    <div class="streak-info">
-                        <span class="streak-label">Meal Prep Streak</span>
-                        <span class="streak-days"><span id="mealPrepStreak">12</span> semaines</span>
+                    <!-- Meal Prep Streak -->
+                    <div class="meal-prep-streak">
+                        <div class="streak-badge">
+                            <i class="fas fa-utensils"></i>
+                            <div class="streak-info">
+                                <span class="streak-label">Meal Prep Streak</span>
+                                <span class="streak-days"><span id="mealPrepStreak">12</span> semaines</span>
+                            </div>
+                        </div>
+                        <div class="meals-prepped">
+                            <span class="meals-count"><span id="mealsPrepped">24</span> repas</span>
+                            <span class="meals-label">préparés cette semaine</span>
+                        </div>
                     </div>
-                </div>
-                <div class="meals-prepped">
-                    <span class="meals-count"><span id="mealsPrepped">24</span> repas</span>
-                    <span class="meals-label">préparés cette semaine</span>
-                </div>
-            </div>
 
-            <!-- Today's Meals -->
-            <div class="todays-meals-section">
-                <h2 class="section-title">
-                    <i class="fas fa-calendar-day"></i> Repas d'Aujourd'hui
-                </h2>
-                <div class="meals-list">
-                    <div class="meal-item">
-                        <div class="meal-icon breakfast">
-                            <i class="fas fa-sun"></i>
+                    <!-- Weight Progress Section -->
+                    <div class="progress-section">
+                        <h2 class="section-title">Progression du Poids</h2>
+                        <div class="progress-ring-container">
+                            <div class="progress-ring enhanced">
+                                <svg class="progress-svg" viewBox="0 0 120 120">
+                                    <defs>
+                                        <linearGradient id="progressGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                            <stop offset="0%" stop-color="#3066BE" />
+                                            <stop offset="100%" stop-color="#FAA916" />
+                                        </linearGradient>
+                                    </defs>
+                                    <circle cx="60" cy="60" r="54" class="progress-bg"></circle>
+                                    <circle cx="60" cy="60" r="54" class="progress-bar" id="progressCircle"></circle>
+                                </svg>
+                                <div class="progress-text">
+                                    <span class="current-weight" id="currentWeight">90kg</span>
+                                    <span class="goal-weight">Objectif : 79kg</span>
+                                    <span class="progress-percent" id="progressPercent">0%</span>
+                                </div>
+                            </div>
                         </div>
-                        <div class="meal-details">
-                            <span class="meal-name">Petit-déjeuner</span>
-                            <span class="meal-food">Oeufs brouillés + Avoine</span>
-                        </div>
-                        <span class="meal-calories">420 cal</span>
                     </div>
-                    <div class="meal-item">
-                        <div class="meal-icon lunch">
-                            <i class="fas fa-sun"></i>
-                        </div>
-                        <div class="meal-details">
-                            <span class="meal-name">Déjeuner</span>
-                            <span class="meal-food">Poulet grillé + Riz</span>
-                        </div>
-                        <span class="meal-calories">580 cal</span>
-                    </div>
-                    <div class="meal-item">
-                        <div class="meal-icon dinner">
-                            <i class="fas fa-moon"></i>
-                        </div>
-                        <div class="meal-details">
-                            <span class="meal-name">Dîner</span>
-                            <span class="meal-food">Saumon + Légumes</span>
-                        </div>
-                        <span class="meal-calories">520 cal</span>
-                    </div>
-                </div>
-                <div class="daily-total">
-                    <span>Total: <strong>1,520 cal</strong> / 1,950 cal</span>
-                    <div class="calorie-bar">
-                        <div class="calorie-progress" style="width: 78%"></div>
-                    </div>
-                </div>
-            </div>
 
-            <!-- Weight Progress Section -->
-            <div class="progress-section">
-                <h2 class="section-title">Progression du Poids</h2>
-                <div class="progress-ring-container">
-                    <div class="progress-ring enhanced">
-                        <svg class="progress-svg" viewBox="0 0 120 120">
-                            <defs>
-                                <linearGradient id="progressGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                                    <stop offset="0%" stop-color="#3066BE" />
-                                    <stop offset="100%" stop-color="#FAA916" />
-                                </linearGradient>
-                            </defs>
-                            <circle cx="60" cy="60" r="54" class="progress-bg"></circle>
-                            <circle cx="60" cy="60" r="54" class="progress-bar" id="progressCircle"></circle>
-                        </svg>
-                        <div class="progress-text">
-                            <span class="current-weight" id="currentWeight">90kg</span>
-                            <span class="goal-weight">Objectif : 79kg</span>
-                            <span class="progress-percent" id="progressPercent">0%</span>
+                    <!-- Goals Section -->
+                    <div class="goals-section">
+                        <h2 class="section-title">Vos Objectifs</h2>
+                        <div class="goals-grid">
+                            <div class="goal-item">
+                                <div class="goal-icon">
+                                    <i class="fas fa-bullseye"></i>
+                                </div>
+                                <div class="goal-info">
+                                    <span class="goal-label">Cible</span>
+                                    <span class="goal-value">79kg</span>
+                                </div>
+                            </div>
+                            <div class="goal-item">
+                                <div class="goal-icon">
+                                    <i class="fas fa-fire"></i>
+                                </div>
+                                <div class="goal-info">
+                                    <span class="goal-label">Calories</span>
+                                    <span class="goal-value">1,950 cal/jour</span>
+                                </div>
+                            </div>
+                            <div class="goal-item">
+                                <div class="goal-icon">
+                                    <i class="fas fa-dumbbell"></i>
+                                </div>
+                                <div class="goal-info">
+                                    <span class="goal-label">Protéines</span>
+                                    <span class="goal-value">98g</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
 
-            <!-- Meal Prep Stats -->
-            <div class="meal-prep-stats">
-                <h2 class="section-title">
-                    <i class="fas fa-chart-line"></i> Stats Meal Prep
-                </h2>
-                <div class="stats-grid">
-                    <div class="stat-card">
-                        <div class="stat-icon">
-                            <i class="fas fa-clock"></i>
-                        </div>
-                        <div class="stat-info">
-                            <span class="stat-value"><span id="timeSaved">8.5</span>h</span>
-                            <span class="stat-label">Temps économisé</span>
-                        </div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-icon">
-                            <i class="fas fa-dollar-sign"></i>
-                        </div>
-                        <div class="stat-info">
-                            <span class="stat-value">€<span id="moneySaved">127</span></span>
-                            <span class="stat-label">Économies</span>
-                        </div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-icon">
-                            <i class="fas fa-check-circle"></i>
-                        </div>
-                        <div class="stat-info">
-                            <span class="stat-value"><span id="goalsHit">94</span>%</span>
-                            <span class="stat-label">Objectifs atteints</span>
+                    <!-- Meal Prep Badges -->
+                    <div class="badges-section">
+                        <h2 class="section-title">
+                            <i class="fas fa-medal"></i> Badges
+                        </h2>
+                        <div class="badges-container">
+                            <div class="badge earned">
+                                <i class="fas fa-trophy"></i>
+                                <span>Meal Prep Pro</span>
+                            </div>
+                            <div class="badge earned">
+                                <i class="fas fa-star"></i>
+                                <span>12 Semaines</span>
+                            </div>
+                            <div class="badge earned">
+                                <i class="fas fa-fire"></i>
+                                <span>Streak Master</span>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Goals Section -->
-            <div class="goals-section">
-                <h2 class="section-title">Vos Objectifs</h2>
-                <div class="goals-grid">
-                    <div class="goal-item">
-                        <div class="goal-icon">
-                            <i class="fas fa-bullseye"></i>
+            <!-- Right Column -->
+            <div class="right-column">
+                <!-- Today's Meals -->
+                <div class="todays-meals-section">
+                    <h2 class="section-title">
+                        <i class="fas fa-calendar-day"></i> Repas d'Aujourd'hui
+                    </h2>
+                    <div class="meals-list">
+                        <div class="meal-item">
+                            <div class="meal-icon breakfast">
+                                <i class="fas fa-sun"></i>
+                            </div>
+                            <div class="meal-details">
+                                <span class="meal-name">Petit-déjeuner</span>
+                                <span class="meal-food">Oeufs brouillés + Avoine</span>
+                            </div>
+                            <span class="meal-calories">420 cal</span>
                         </div>
-                        <div class="goal-info">
-                            <span class="goal-label">Cible</span>
-                            <span class="goal-value">79kg</span>
+                        <div class="meal-item">
+                            <div class="meal-icon lunch">
+                                <i class="fas fa-sun"></i>
+                            </div>
+                            <div class="meal-details">
+                                <span class="meal-name">Déjeuner</span>
+                                <span class="meal-food">Poulet grillé + Riz</span>
+                            </div>
+                            <span class="meal-calories">580 cal</span>
+                        </div>
+                        <div class="meal-item">
+                            <div class="meal-icon dinner">
+                                <i class="fas fa-moon"></i>
+                            </div>
+                            <div class="meal-details">
+                                <span class="meal-name">Dîner</span>
+                                <span class="meal-food">Saumon + Légumes</span>
+                            </div>
+                            <span class="meal-calories">520 cal</span>
                         </div>
                     </div>
-                    <div class="goal-item">
-                        <div class="goal-icon">
-                            <i class="fas fa-fire"></i>
-                        </div>
-                        <div class="goal-info">
-                            <span class="goal-label">Calories</span>
-                            <span class="goal-value">1,950 cal/jour</span>
+                    <div class="daily-total">
+                        <span>Total: <strong>1,520 cal</strong> / 1,950 cal</span>
+                        <div class="calorie-bar">
+                            <div class="calorie-progress" style="width: 78%"></div>
                         </div>
                     </div>
-                    <div class="goal-item">
-                        <div class="goal-icon">
-                            <i class="fas fa-dumbbell"></i>
+                </div>
+
+                <!-- Charts Section -->
+                <div class="charts-section">
+                    <h2 class="section-title">
+                        <i class="fas fa-chart-bar"></i> Analyses & Statistiques
+                    </h2>
+                    <div class="charts-grid">
+                        <!-- Weight History Chart -->
+                        <div class="chart-card">
+                            <h3 class="chart-title">Évolution du Poids</h3>
+                            <canvas id="weightChart"></canvas>
                         </div>
-                        <div class="goal-info">
-                            <span class="goal-label">Protéines</span>
-                            <span class="goal-value">98g</span>
+
+                        <!-- Macro Distribution Chart -->
+                        <div class="chart-card">
+                            <h3 class="chart-title">Répartition des Macros</h3>
+                            <canvas id="macroChart"></canvas>
+                        </div>
+
+                        <!-- Weekly Calories Chart -->
+                        <div class="chart-card">
+                            <h3 class="chart-title">Calories Hebdomadaires</h3>
+                            <canvas id="caloriesChart"></canvas>
+                        </div>
+
+                        <!-- Meal Prep Progress Chart -->
+                        <div class="chart-card">
+                            <h3 class="chart-title">Progression Meal Prep</h3>
+                            <canvas id="mealPrepChart"></canvas>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- Favorite Recipes -->
-            <div class="favorites-section">
-                <h2 class="section-title">
-                    <i class="fas fa-heart"></i> Recettes Favorites
-                </h2>
-                <div class="recipes-grid">
-                    <div class="recipe-card">
-                        <div class="recipe-icon">
-                            <i class="fas fa-fish"></i>
+                <!-- Meal Prep Stats -->
+                <div class="meal-prep-stats">
+                    <h2 class="section-title">
+                        <i class="fas fa-chart-line"></i> Stats Meal Prep
+                    </h2>
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="stat-info">
+                                <span class="stat-value"><span id="timeSaved">8.5</span>h</span>
+                                <span class="stat-label">Temps économisé</span>
+                            </div>
                         </div>
-                        <div class="recipe-info">
-                            <span class="recipe-name">Saumon Teriyaki</span>
-                            <span class="recipe-stats">420 cal • 35g P</span>
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-dollar-sign"></i>
+                            </div>
+                            <div class="stat-info">
+                                <span class="stat-value">€<span id="moneySaved">127</span></span>
+                                <span class="stat-label">Économies</span>
+                            </div>
                         </div>
-                        <i class="fas fa-chevron-right"></i>
-                    </div>
-                    <div class="recipe-card">
-                        <div class="recipe-icon">
-                            <i class="fas fa-drumstick-bite"></i>
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-check-circle"></i>
+                            </div>
+                            <div class="stat-info">
+                                <span class="stat-value"><span id="goalsHit">94</span>%</span>
+                                <span class="stat-label">Objectifs atteints</span>
+                            </div>
                         </div>
-                        <div class="recipe-info">
-                            <span class="recipe-name">Poulet BBQ</span>
-                            <span class="recipe-stats">380 cal • 42g P</span>
-                        </div>
-                        <i class="fas fa-chevron-right"></i>
-                    </div>
-                    <div class="recipe-card">
-                        <div class="recipe-icon">
-                            <i class="fas fa-leaf"></i>
-                        </div>
-                        <div class="recipe-info">
-                            <span class="recipe-name">Bowl Végétarien</span>
-                            <span class="recipe-stats">350 cal • 18g P</span>
-                        </div>
-                        <i class="fas fa-chevron-right"></i>
                     </div>
                 </div>
-            </div>
 
-            <!-- Meal Prep Badges -->
-            <div class="badges-section">
-                <h2 class="section-title">
-                    <i class="fas fa-medal"></i> Badges
-                </h2>
-                <div class="badges-container">
-                    <div class="badge earned">
-                        <i class="fas fa-trophy"></i>
-                        <span>Meal Prep Pro</span>
-                    </div>
-                    <div class="badge earned">
-                        <i class="fas fa-star"></i>
-                        <span>12 Semaines</span>
-                    </div>
-                    <div class="badge earned">
-                        <i class="fas fa-fire"></i>
-                        <span>Streak Master</span>
-                    </div>
-                    <div class="badge locked">
-                        <i class="fas fa-lock"></i>
-                        <span>100 Repas</span>
+                <!-- Favorite Recipes -->
+                <div class="favorites-section">
+                    <h2 class="section-title">
+                        <i class="fas fa-heart"></i> Recettes Favorites
+                    </h2>
+                    <div class="recipes-grid">
+                        <div class="recipe-card" data-recipe="salmon">
+                            <div class="recipe-icon">
+                                <i class="fas fa-fish"></i>
+                            </div>
+                            <div class="recipe-info">
+                                <span class="recipe-name">Saumon Teriyaki</span>
+                                <span class="recipe-stats">420 cal • 35g P</span>
+                            </div>
+                            <i class="fas fa-chevron-right"></i>
+                        </div>
+                        <div class="recipe-card" data-recipe="chicken">
+                            <div class="recipe-icon">
+                                <i class="fas fa-drumstick-bite"></i>
+                            </div>
+                            <div class="recipe-info">
+                                <span class="recipe-name">Poulet BBQ</span>
+                                <span class="recipe-stats">380 cal • 42g P</span>
+                            </div>
+                            <i class="fas fa-chevron-right"></i>
+                        </div>
+                        <div class="recipe-card" data-recipe="veggie">
+                            <div class="recipe-icon">
+                                <i class="fas fa-leaf"></i>
+                            </div>
+                            <div class="recipe-info">
+                                <span class="recipe-name">Bowl Végétarien</span>
+                                <span class="recipe-stats">350 cal • 18g P</span>
+                            </div>
+                            <i class="fas fa-chevron-right"></i>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- View Details Button -->
-            <button class="btn solid view-details-btn" id="viewDetailsBtn">
-                <span class="btn-label">Voir les Détails</span>
-                <i class="fas fa-arrow-right arrow"></i>
-            </button>
+                <!-- View Details Button -->
+                <button class="btn solid view-details-btn" id="viewDetailsBtn">
+                    <span class="btn-label">Voir les Détails</span>
+                    <i class="fas fa-arrow-right arrow"></i>
+                </button>
+            </div>
         </div>
     </div>
 
@@ -299,6 +336,16 @@
                         <p><em>"Chaque jour un pas de plus vers ton objectif 💪"</em></p>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Recipe Detail Modal -->
+    <div class="recipe-modal" id="recipeModal">
+        <div class="recipe-modal-content">
+            <span class="recipe-close-btn" id="recipeCloseBtn">&times;</span>
+            <div class="recipe-modal-body" id="recipeModalBody">
+                <!-- Content will be dynamically loaded -->
             </div>
         </div>
     </div>

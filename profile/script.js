@@ -255,6 +255,325 @@ function animateCalorieBar() {
     }, 500);
 }
 
+// Recipe data
+const recipes = {
+    salmon: {
+        name: "Saumon Teriyaki",
+        calories: 420,
+        protein: 35,
+        carbs: 28,
+        fat: 18,
+        prepTime: 15,
+        cookTime: 20,
+        servings: 2,
+        videoId: "jWTLDFZ-9D4", // Replace with actual YouTube video ID
+        ingredients: [
+            "2 filets de saumon (200g chacun)",
+            "4 cuillères à soupe de sauce teriyaki",
+            "2 cuillères à soupe de miel",
+            "2 gousses d'ail, hachées",
+            "1 cuillère à soupe de gingembre frais, râpé",
+            "2 cuillères à soupe d'huile d'olive",
+            "200g de riz brun cuit",
+            "200g de brocoli, coupé en fleurettes",
+            "1 cuillère à soupe de graines de sésame",
+            "Ciboulette fraîche pour garnir"
+        ],
+        instructions: [
+            "Mélangez la sauce teriyaki, le miel, l'ail et le gingembre dans un bol.",
+            "Marinez les filets de saumon dans la moitié de la sauce pendant 10 minutes.",
+            "Faites chauffer l'huile dans une grande poêle à feu moyen-vif.",
+            "Faites cuire le saumon pendant 4-5 minutes de chaque côté jusqu'à ce qu'il soit bien cuit.",
+            "Ajoutez le reste de la sauce et laissez mijoter 2 minutes.",
+            "Pendant ce temps, faites cuire le brocoli à la vapeur pendant 5 minutes.",
+            "Servez le saumon sur le riz avec le brocoli, saupoudrez de graines de sésame et de ciboulette."
+        ]
+    },
+    chicken: {
+        name: "Poulet BBQ",
+        calories: 380,
+        protein: 42,
+        carbs: 22,
+        fat: 12,
+        prepTime: 10,
+        cookTime: 25,
+        servings: 2,
+        videoId: "z2u6Uy5kQjg", // Replace with actual YouTube video ID
+        ingredients: [
+            "2 filets de poulet (150g chacun)",
+            "4 cuillères à soupe de sauce BBQ",
+            "1 cuillère à soupe de vinaigre de cidre",
+            "1 cuillère à café de paprika",
+            "1 cuillère à café d'ail en poudre",
+            "200g de patates douces, coupées en cubes",
+            "150g de haricots verts",
+            "2 cuillères à soupe d'huile d'olive",
+            "Sel et poivre"
+        ],
+        instructions: [
+            "Préchauffez le four à 200°C.",
+            "Mélangez la sauce BBQ, le vinaigre, le paprika et l'ail en poudre.",
+            "Badigeonnez les filets de poulet avec la moitié de la sauce.",
+            "Placez les patates douces sur une plaque et arrosez d'huile d'olive.",
+            "Faites cuire au four pendant 20 minutes, retournez le poulet à mi-cuisson.",
+            "Ajoutez les haricots verts et faites cuire 5 minutes de plus.",
+            "Servez chaud avec le reste de la sauce BBQ."
+        ]
+    },
+    veggie: {
+        name: "Bowl Végétarien",
+        calories: 350,
+        protein: 18,
+        carbs: 45,
+        fat: 10,
+        prepTime: 10,
+        cookTime: 15,
+        servings: 2,
+        videoId: "jHY9-Q4E_XE", // Replace with actual YouTube video ID
+        ingredients: [
+            "150g de quinoa cuit",
+            "200g de pois chiches en conserve, égouttés",
+            "1 avocat, tranché",
+            "100g de chou rouge, émincé",
+            "100g de carottes râpées",
+            "50g de noix, hachées",
+            "2 cuillères à soupe d'huile d'olive",
+            "Jus d'un citron",
+            "1 cuillère à café de miel",
+            "Sel et poivre",
+            "Feuilles de coriandre fraîche"
+        ],
+        instructions: [
+            "Rincez et égouttez les pois chiches, puis faites-les rôtir au four à 200°C pendant 15 minutes.",
+            "Préparez la vinaigrette en mélangeant l'huile d'olive, le jus de citron et le miel.",
+            "Divisez le quinoa cuit dans deux bols.",
+            "Ajoutez les pois chiches rôtis, l'avocat, le chou rouge et les carottes.",
+            "Saupoudrez de noix et de coriandre.",
+            "Arrosez de vinaigrette et servez immédiatement."
+        ]
+    }
+};
+
+// Initialize Charts
+function initializeCharts() {
+    // Weight History Chart
+    const weightCtx = document.getElementById('weightChart');
+    if (weightCtx) {
+        new Chart(weightCtx, {
+            type: 'line',
+            data: {
+                labels: ['Sem 1', 'Sem 2', 'Sem 3', 'Sem 4', 'Sem 5', 'Sem 6', 'Sem 7'],
+                datasets: [{
+                    label: 'Poids (kg)',
+                    data: [91, 90.6, 90.4, 90.1, 89.8, 89.5, 89.2],
+                    borderColor: '#3066BE',
+                    backgroundColor: 'rgba(48, 102, 190, 0.1)',
+                    borderWidth: 3,
+                    tension: 0.4,
+                    fill: true,
+                    pointRadius: 5,
+                    pointBackgroundColor: '#FAA916',
+                    pointBorderColor: '#3066BE',
+                    pointBorderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true,
+                plugins: {
+                    legend: { display: false }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: false,
+                        grid: { color: 'rgba(0,0,0,0.05)' }
+                    },
+                    x: { grid: { display: false } }
+                }
+            }
+        });
+    }
+
+    // Macro Distribution Chart
+    const macroCtx = document.getElementById('macroChart');
+    if (macroCtx) {
+        new Chart(macroCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Protéines', 'Glucides', 'Lipides'],
+                datasets: [{
+                    data: [98, 244, 65],
+                    backgroundColor: ['#3066BE', '#FAA916', '#10b981'],
+                    borderWidth: 0
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: { padding: 15, font: { size: 12 } }
+                    }
+                }
+            }
+        });
+    }
+
+    // Weekly Calories Chart
+    const caloriesCtx = document.getElementById('caloriesChart');
+    if (caloriesCtx) {
+        new Chart(caloriesCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam', 'Dim'],
+                datasets: [{
+                    label: 'Calories consommées',
+                    data: [1850, 1920, 1950, 1980, 1950, 2100, 1880],
+                    backgroundColor: 'rgba(48, 102, 190, 0.6)',
+                    borderColor: '#3066BE',
+                    borderWidth: 2,
+                    borderRadius: 8
+                }, {
+                    label: 'Objectif',
+                    data: [1950, 1950, 1950, 1950, 1950, 1950, 1950],
+                    backgroundColor: 'rgba(250, 169, 22, 0.3)',
+                    borderColor: '#FAA916',
+                    borderWidth: 2,
+                    borderRadius: 8,
+                    type: 'line',
+                    tension: 0
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: { padding: 15, font: { size: 12 } }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: false,
+                        grid: { color: 'rgba(0,0,0,0.05)' }
+                    },
+                    x: { grid: { display: false } }
+                }
+            }
+        });
+    }
+
+    // Meal Prep Progress Chart
+    const mealPrepCtx = document.getElementById('mealPrepChart');
+    if (mealPrepCtx) {
+        new Chart(mealPrepCtx, {
+            type: 'radar',
+            data: {
+                labels: ['Semaine 1', 'Semaine 2', 'Semaine 3', 'Semaine 4'],
+                datasets: [{
+                    label: 'Repas préparés',
+                    data: [18, 21, 24, 24],
+                    backgroundColor: 'rgba(48, 102, 190, 0.2)',
+                    borderColor: '#3066BE',
+                    borderWidth: 3,
+                    pointBackgroundColor: '#FAA916',
+                    pointBorderColor: '#3066BE',
+                    pointBorderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true,
+                plugins: {
+                    legend: { display: false }
+                },
+                scales: {
+                    r: {
+                        beginAtZero: true,
+                        grid: { color: 'rgba(0,0,0,0.1)' }
+                    }
+                }
+            }
+        });
+    }
+}
+
+// Recipe Modal Functions
+function openRecipeModal(recipeId) {
+    const recipe = recipes[recipeId];
+    if (!recipe) return;
+
+    const modal = document.getElementById('recipeModal');
+    const modalBody = document.getElementById('recipeModalBody');
+
+    modalBody.innerHTML = `
+        <div class="recipe-header">
+            <h2>${recipe.name}</h2>
+            <div class="recipe-meta">
+                <div class="recipe-meta-item">
+                    <i class="fas fa-fire"></i>
+                    <span>${recipe.calories} cal</span>
+                </div>
+                <div class="recipe-meta-item">
+                    <i class="fas fa-dumbbell"></i>
+                    <span>${recipe.protein}g Protéines</span>
+                </div>
+                <div class="recipe-meta-item">
+                    <i class="fas fa-clock"></i>
+                    <span>${recipe.prepTime + recipe.cookTime} min</span>
+                </div>
+                <div class="recipe-meta-item">
+                    <i class="fas fa-users"></i>
+                    <span>${recipe.servings} portions</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="recipe-video-section">
+            <div class="recipe-video-container">
+                <iframe 
+                    src="https://www.youtube.com/embed/${recipe.videoId}" 
+                    frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowfullscreen>
+                </iframe>
+            </div>
+        </div>
+
+        <div class="recipe-ingredients">
+            <h3><i class="fas fa-list-ul"></i> Ingrédients</h3>
+            <ul class="ingredients-list">
+                ${recipe.ingredients.map(ing => `
+                    <li class="ingredient-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>${ing}</span>
+                    </li>
+                `).join('')}
+            </ul>
+        </div>
+
+        <div class="recipe-instructions">
+            <h3><i class="fas fa-tasks"></i> Instructions</h3>
+            <ol class="instructions-list">
+                ${recipe.instructions.map(inst => `
+                    <li class="instruction-item">
+                        <p>${inst}</p>
+                    </li>
+                `).join('')}
+            </ol>
+        </div>
+    `;
+
+    modal.classList.add('active');
+}
+
+function closeRecipeModal() {
+    const modal = document.getElementById('recipeModal');
+    modal.classList.remove('active');
+}
+
 // Initialize everything
 window.addEventListener('DOMContentLoaded', () => {
     initTheme();
@@ -262,16 +581,33 @@ window.addEventListener('DOMContentLoaded', () => {
     animateProgressRing();
     animateMealPrepStats();
     animateCalorieBar();
+    initializeCharts();
 
     // Événements
     themeToggle.addEventListener('click', toggleTheme);
     viewDetailsBtn.addEventListener('click', handleViewDetails);
 
-    // Add click handlers for recipe cards
+    // Recipe card clicks
     document.querySelectorAll('.recipe-card').forEach(card => {
         card.addEventListener('click', () => {
-            const recipeName = card.querySelector('.recipe-name').textContent;
-            showNotification(`Ouverture de ${recipeName}...`);
+            const recipeId = card.getAttribute('data-recipe');
+            if (recipeId) {
+                openRecipeModal(recipeId);
+            }
         });
+    });
+
+    // Recipe modal close
+    const recipeCloseBtn = document.getElementById('recipeCloseBtn');
+    const recipeModal = document.getElementById('recipeModal');
+    
+    if (recipeCloseBtn) {
+        recipeCloseBtn.addEventListener('click', closeRecipeModal);
+    }
+    
+    window.addEventListener('click', (e) => {
+        if (e.target === recipeModal) {
+            closeRecipeModal();
+        }
     });
 });
