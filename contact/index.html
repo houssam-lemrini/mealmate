@@ -43,16 +43,19 @@
             <div class="field">
               <label for="firstName">Prénom <span class="req">!</span></label>
               <input id="firstName" name="firstName" type="text" placeholder="Votre prénom" autocomplete="given-name" required minlength="2" />
+              <span class="validation-hint" id="firstNameHint"></span>
             </div>
             <div class="field">
               <label for="lastName">Nom </label>
               <input id="lastName" name="lastName" type="text" placeholder="Votre nom" autocomplete="family-name" required minlength="2" />
+              <span class="validation-hint" id="lastNameHint"></span>
             </div>
           </div>
 
           <div class="field">
             <label for="email">Email <span class="req">!</span></label>
             <input id="email" name="email" type="email" placeholder="vous@example.com" autocomplete="email" required />
+            <span class="validation-hint" id="emailHint"></span>
           </div>
 
           <div class="field">
@@ -66,11 +69,13 @@
               <option value="account">Compte / Connexion</option>
               <option value="other">Autre</option>
             </select>
+            <span class="validation-hint" id="categoryHint"></span>
           </div>
 
           <div class="field">
             <label for="subject">Sujet <span class="req">!</span></label>
             <input id="subject" name="subject" type="text" placeholder="Sujet" maxlength="120" required />
+            <span class="validation-hint" id="subjectHint"></span>
           </div>
 
           <div class="field">
@@ -80,21 +85,60 @@
               <div class="char-meter"><span id="charProgress"></span></div>
               <small class="muted"><span id="charCount">0</span>/500</small>
             </div>
+            <span class="validation-hint" id="messageHint"></span>
           </div>
 
           <p class="error" id="formError" aria-live="polite"></p>
           <div class="actions">
-            <button type="submit" class="btn">
+            <button type="submit" class="btn" id="submitBtn">
               <span class="btn-label">Envoyer</span>
               <span class="btn-spinner" aria-hidden="true"></span>
             </button>
           </div>
         </form>
+
+        <div class="social-media">
+          <h3>Suivez-nous</h3>
+          <div class="social-icons">
+            <a href="#" aria-label="Instagram" class="social-icon instagram">📷</a>
+            <a href="#" aria-label="LinkedIn" class="social-icon linkedin">💼</a>
+            <a href="#" aria-label="Twitter" class="social-icon twitter">🐦</a>
+            <a href="#" aria-label="Facebook" class="social-icon facebook">👥</a>
+          </div>
+        </div>
+
+        <div class="map-container">
+          <h3>Notre localisation</h3>
+          <iframe 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2624.9914406081496!2d2.292292615509644!3d48.85837007928746!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e66e2964e34e2d%3A0x8ddca9ee380ef7e0!2sTour%20Eiffel!5e0!3m2!1sfr!2sfr!4v1234567890123!5m2!1sfr!2sfr"
+            width="100%"
+            height="250"
+            style="border:0; border-radius: 12px;"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+        </div>
       </main>
 
       <footer class="contact-footer">
         <a href="../index.html" class="back-link">← Retour à l'accueil</a>
       </footer>
+    </div>
+
+    <!-- Success message -->
+    <div class="success-message" id="successMessage">
+      Message envoyé avec succès 😎
+    </div>
+
+    <!-- Scroll to top button -->
+    <button class="scroll-to-top" id="scrollToTop" aria-label="Retour en haut">
+      ↑
+    </button>
+
+    <!-- Chatbot bubble -->
+    <div class="chatbot-bubble" id="chatbotBubble" aria-label="Chatbot">
+      💬
     </div>
 
     <script>
@@ -103,6 +147,18 @@
       const msg = document.getElementById('message');
       const charCount = document.getElementById('charCount');
       const charProgress = document.getElementById('charProgress');
+      const submitBtn = document.getElementById('submitBtn');
+      const successMessage = document.getElementById('successMessage');
+      const scrollToTop = document.getElementById('scrollToTop');
+      const chatbotBubble = document.getElementById('chatbotBubble');
+      const bubble = document.querySelector('.bubble');
+
+      // Validation hints
+      const firstName = document.getElementById('firstName');
+      const lastName = document.getElementById('lastName');
+      const email = document.getElementById('email');
+      const category = document.getElementById('category');
+      const subject = document.getElementById('subject');
 
       function updateCounters() {
         const max = 500;
@@ -112,24 +168,142 @@
         charProgress.style.width = pct + '%';
       }
 
-      msg.addEventListener('input', updateCounters);
+      function validateField(field, hintId, validator) {
+        const hint = document.getElementById(hintId);
+        if (field.value.trim() === '' && !field.required) {
+          hint.textContent = '';
+          field.classList.remove('valid', 'invalid');
+          return true;
+        }
+        if (validator(field.value)) {
+          hint.textContent = '✅ Valide';
+          hint.className = 'validation-hint valid';
+          field.classList.add('valid');
+          field.classList.remove('invalid');
+          return true;
+        } else {
+          hint.textContent = '';
+          hint.className = 'validation-hint';
+          field.classList.remove('valid', 'invalid');
+          return false;
+        }
+      }
+
+      // Live validation
+      firstName.addEventListener('input', () => {
+        validateField(firstName, 'firstNameHint', (v) => v.length >= 2);
+      });
+
+      lastName.addEventListener('input', () => {
+        validateField(lastName, 'lastNameHint', (v) => v.length >= 2);
+      });
+
+      email.addEventListener('input', () => {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (email.value.trim() === '') {
+          document.getElementById('emailHint').textContent = '';
+          email.classList.remove('valid', 'invalid');
+        } else {
+          const hint = document.getElementById('emailHint');
+          if (emailRegex.test(email.value)) {
+            hint.textContent = '✅ Email valide';
+            hint.className = 'validation-hint valid';
+            email.classList.add('valid');
+            email.classList.remove('invalid');
+          } else {
+            hint.textContent = '';
+            hint.className = 'validation-hint';
+            email.classList.remove('valid', 'invalid');
+          }
+        }
+      });
+
+      category.addEventListener('change', () => {
+        validateField(category, 'categoryHint', (v) => v !== '');
+      });
+
+      subject.addEventListener('input', () => {
+        validateField(subject, 'subjectHint', (v) => v.length >= 3);
+      });
+
+      msg.addEventListener('input', () => {
+        updateCounters();
+        const hint = document.getElementById('messageHint');
+        if (msg.value.length >= 10) {
+          hint.textContent = '✅ Message valide';
+          hint.className = 'validation-hint valid';
+        } else {
+          hint.textContent = '';
+          hint.className = 'validation-hint';
+        }
+      });
+
       updateCounters();
+
+      // Form fade-in animation
+      const contactCard = document.querySelector('.contact-card');
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+          }
+        });
+      }, { threshold: 0.1 });
+      contactCard.style.opacity = '0';
+      contactCard.style.transform = 'translateY(20px)';
+      contactCard.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+      observer.observe(contactCard);
+
+      // Parallax effect
+      document.addEventListener('mousemove', (e) => {
+        const x = (e.clientX / window.innerWidth - 0.5) * 20;
+        const y = (e.clientY / window.innerHeight - 0.5) * 20;
+        bubble.style.transform = `translate(${x}px, ${y}px)`;
+      });
 
       form.addEventListener('submit', (e) => {
         e.preventDefault();
         errorBox.textContent = '';
-        const btn = form.querySelector('.btn');
-        btn.classList.add('loading');
+        submitBtn.disabled = true;
+        submitBtn.classList.add('loading');
+        
         if (!form.checkValidity()) {
           errorBox.textContent = 'Complétez les champs requis.';
-          btn.classList.remove('loading');
+          submitBtn.classList.remove('loading');
+          submitBtn.disabled = false;
           return;
         }
+        
         setTimeout(() => {
-          btn.classList.remove('loading');
+          submitBtn.classList.remove('loading');
+          submitBtn.disabled = false;
           form.reset();
           updateCounters();
+          // Show success message
+          successMessage.classList.add('show');
+          setTimeout(() => {
+            successMessage.classList.remove('show');
+          }, 3000);
         }, 800);
+      });
+
+      // Scroll to top
+      scrollToTop.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+
+      window.addEventListener('scroll', () => {
+        if (window.pageYOffset > 300) {
+          scrollToTop.classList.add('visible');
+        } else {
+          scrollToTop.classList.remove('visible');
+        }
+      });
+
+      // Chatbot bubble click
+      chatbotBubble.addEventListener('click', () => {
+        alert('Chatbot en développement ! 🚀');
       });
     </script>
   </body>

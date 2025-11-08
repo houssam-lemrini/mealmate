@@ -10,6 +10,14 @@ sign_in_btn.addEventListener('click', () =>{
     container.classList.remove("sign-up-mode");
 });
 
+window.addEventListener("DOMContentLoaded", () => {
+  // if the url end with #signup, switch to sign up view
+  if (window.location.hash === "#signup") {
+    const signUpBtn = document.getElementById("sign-up-btn");
+    if (signUpBtn) signUpBtn.click();
+  }
+});
+
 // Toggle password visibility
 function bindPasswordToggles() {
   document.querySelectorAll('.toggle-password').forEach(btn => {
@@ -92,19 +100,6 @@ function bindFormLoading() {
         }, 900);
       }
     });
-  });
-}
-
-// Forgot password (demo)
-function bindForgotPassword() {
-  const link = document.getElementById('forgotPasswordLink');
-  const error = document.getElementById('signinError');
-  const emailLike = document.getElementById('signinUsername');
-  if (!link) return;
-  link.addEventListener('click', (e) => {
-    e.preventDefault();
-    if (error) error.textContent = "Lien de réinitialisation envoyé si le compte existe.";
-    setTimeout(() => { if (error) error.textContent = ''; }, 2000);
   });
 }
 

@@ -55,7 +55,7 @@ input {
   top: 50%;
   transform: translate(-50%, -50%);
   left: 75%;
-  width: 50%;
+  width: 80%;
   transition: 1s 0.7s ease-in-out;
   display: grid;
   grid-template-columns: 1fr;
@@ -75,13 +75,13 @@ form {
 }
 
 form.sign-up-form {
-  transform: scale(0.9);
+  transform: scale(0.85);
   opacity: 0;
   z-index: 1;
 }
 
 form.sign-in-form {
-  transform: scale(0.9);
+  transform: scale(0.85);
   z-index: 2;
 }
 
