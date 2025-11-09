@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page des Ingrédients - MealMate</title>
+    <link rel="stylesheet" href="../assets/css/ingredient.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Theme Toggle Button -->
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+        <i class="fas fa-sun sun-icon"></i>
+        <i class="fas fa-moon moon-icon"></i>
+    </button>
+
+    <!-- Navigation Back Button -->
+    <a href="../index.html" class="back-button" aria-label="Retour à l'accueil">
+        <i class="fas fa-arrow-left"></i>
+        <span>Retour</span>
+    </a>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Header Section with Image -->
+        <div class="header-section">
+            <div class="header-image-wrapper">
+                <img src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=800&q=80" alt="Ingrédients frais" class="header-image">
+                <div class="header-overlay"></div>
+            </div>
+            <div class="header-content">
+                <div class="header-icon">
+                    <i class="fas fa-shopping-basket"></i>
+                </div>
+                <h1 class="page-title">Mes Ingrédients</h1>
+                <p class="page-subtitle">Indiquez les ingrédients que vous possédez pour recevoir des suggestions de repas adaptées à vos objectifs fitness</p>
+            </div>
+        </div>
+
+        <!-- Popular Ingredients Gallery -->
+        <div class="popular-section">
+            <h2 class="section-title">
+                <i class="fas fa-star"></i>
+                Ingrédients Populaires
+            </h2>
+            <div class="popular-grid" id="popularGrid">
+                <!-- Will be populated by JavaScript -->
+            </div>
+        </div>
+
+        <!-- Input Section -->
+        <div class="input-section">
+            <div class="input-container">
+                <i class="fas fa-search input-icon"></i>
+                <input 
+                    type="text" 
+                    id="ingredientInput" 
+                    class="ingredient-input" 
+                    placeholder="Ajouter un ingrédient (ex: poulet, œufs, épinards...)"
+                    autocomplete="off"
+                >
+                <button class="add-btn" id="addBtn" aria-label="Ajouter l'ingrédient">
+                    <i class="fas fa-plus"></i>
+                    <span>Ajouter</span>
+                </button>
+            </div>
+            <div class="suggestions" id="suggestions"></div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="actions-section">
+            <button class="action-btn btn-secondary" id="addFromHistoryBtn">
+                <i class="fas fa-history"></i>
+                <span>Ajouter depuis l'historique</span>
+            </button>
+            <button class="action-btn btn-danger" id="clearAllBtn">
+                <i class="fas fa-trash-alt"></i>
+                <span>Tout effacer</span>
+            </button>
+        </div>
+
+        <!-- Ingredients List Section -->
+        <div class="ingredients-section">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <i class="fas fa-list-ul"></i>
+                    Ingrédients ajoutés
+                    <span class="ingredient-count" id="ingredientCount">(0)</span>
+                </h2>
+            </div>
+            <div class="ingredients-list" id="ingredientsList">
+                <div class="empty-state" id="emptyState">
+                    <img src="https://images.unsplash.com/photo-1482049016688-2d3e1b311543?w=400&q=80" alt="Empty" class="empty-image">
+                    <p>Aucun ingrédient ajouté</p>
+                    <span>Commencez par ajouter vos ingrédients ci-dessus</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Suggested Meals Preview (Optional) -->
+        <div class="suggestions-section" id="suggestionsSection" style="display: none;">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <i class="fas fa-utensils"></i>
+                    Repas suggérés
+                </h2>
+            </div>
+            <div class="meals-preview" id="mealsPreview">
+                <!-- Meals will be dynamically added here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- History Modal -->
+    <div class="modal" id="historyModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>
+                    <i class="fas fa-history"></i>
+                    Historique des ingrédients
+                </h2>
+                <button class="close-modal" id="closeHistoryModal" aria-label="Fermer">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="history-list" id="historyList">
+                    <div class="empty-history" id="emptyHistory">
+                        <i class="fas fa-clock"></i>
+                        <p>Aucun historique disponible</p>
+                        <span>Les ingrédients que vous ajoutez seront sauvegardés dans l'historique</span>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-primary" id="addSelectedFromHistory">
+                    <i class="fas fa-check"></i>
+                    Ajouter les ingrédients sélectionnés
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification Toast -->
+    <div class="toast" id="toast"></div>
+
+    <script src="ingredient.js"></script>
+</body>
+</html>
