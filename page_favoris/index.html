@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mes Favoris - MealMate</title>
+    <link rel="stylesheet" href="../assets/css/favoris.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Theme Toggle Button -->
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+        <i class="fas fa-sun sun-icon"></i>
+        <i class="fas fa-moon moon-icon"></i>
+    </button>
+
+    <!-- Navigation Back Button -->
+    <a href="../index.html" class="back-button" aria-label="Retour à l'accueil">
+        <i class="fas fa-arrow-left"></i>
+        <span>Retour</span>
+    </a>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Header Section -->
+        <div class="header-section">
+            <div class="header-image-wrapper">
+                <img src="https://images.unsplash.com/photo-1495521821757-a1efb6729352?w=800&q=80" alt="Repas favoris" class="header-image">
+                <div class="header-overlay"></div>
+            </div>
+            <div class="header-content">
+                <div class="header-icon">
+                    <i class="fas fa-heart"></i>
+                </div>
+                <h1 class="page-title">Mes Favoris</h1>
+                <p class="page-subtitle">Retrouvez tous vos repas enregistrés et préférés</p>
+            </div>
+        </div>
+
+        <!-- Search and Filter Section -->
+        <div class="controls-section">
+            <div class="search-container">
+                <i class="fas fa-search search-icon"></i>
+                <input 
+                    type="text" 
+                    id="searchInput" 
+                    class="search-input" 
+                    placeholder="Rechercher un repas..."
+                    autocomplete="off"
+                >
+                <button class="clear-search" id="clearSearch" style="display: none;">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div class="filter-container">
+                <label for="sortSelect" class="filter-label">
+                    <i class="fas fa-sort"></i>
+                    Trier par:
+                </label>
+                <select id="sortSelect" class="sort-select">
+                    <option value="date">Date d'ajout</option>
+                    <option value="name">Nom (A-Z)</option>
+                    <option value="calories-asc">Calories (Croissant)</option>
+                    <option value="calories-desc">Calories (Décroissant)</option>
+                    <option value="protein">Protéines</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Stats Section -->
+        <div class="stats-section">
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-heart"></i>
+                </div>
+                <div class="stat-info">
+                    <span class="stat-value" id="totalFavorites">0</span>
+                    <span class="stat-label">Favoris</span>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-fire"></i>
+                </div>
+                <div class="stat-info">
+                    <span class="stat-value" id="totalCalories">0</span>
+                    <span class="stat-label">Calories totales</span>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-dumbbell"></i>
+                </div>
+                <div class="stat-info">
+                    <span class="stat-value" id="avgProtein">0</span>
+                    <span class="stat-label">Protéines moy.</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Favorites List Section -->
+        <div class="favorites-section">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <i class="fas fa-bookmark"></i>
+                    Repas enregistrés
+                    <span class="favorites-count" id="favoritesCount">(0)</span>
+                </h2>
+            </div>
+            
+            <div class="favorites-grid" id="favoritesGrid">
+                <div class="empty-state" id="emptyState">
+                    <img src="https://images.unsplash.com/photo-1482049016688-2d3e1b311543?w=400&q=80" alt="Empty" class="empty-image">
+                    <p>Aucun favori pour le moment</p>
+                    <span>Commencez à enregistrer vos repas préférés</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Meal Detail Modal -->
+    <div class="modal" id="mealModal">
+        <div class="modal-content modal-large">
+            <div class="modal-header">
+                <h2 id="modalMealName"></h2>
+                <button class="close-modal" id="closeMealModal" aria-label="Fermer">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body" id="modalMealBody">
+                <!-- Content will be dynamically loaded -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification Toast -->
+    <div class="toast" id="toast"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
