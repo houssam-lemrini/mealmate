@@ -24,6 +24,13 @@
             <h2>MealMate</h2>
           </div>
         </div>
+        <div class="middlenav">
+          <a class="active" href="#mfp">Home</a>
+          <a href="#sign-log">Sign/Log in</a>
+          <a href="#help">Help</a>
+          <a href="#faq">FAQ</a>
+          <a href="#about">About us</a>
+        </div>
         <div class="right-nav">
             <div class="profile">
                 <div class="avatar">
@@ -35,7 +42,7 @@
         </div>
         
     </div>
-    <section class="mfp-hero">
+    <section class="mfp-hero" id="mfp">
       <div class="mfp-hero-content">
         <h1>Nutrition tracking for real life</h1>
         <p>Take control of your goals with MealMate. Track meals, get nutritional insights, and achieve your health objectives.</p>
@@ -46,7 +53,7 @@
       </div>
     </section>
 
-    <main class="hero">
+    <main class="hero" id="sign-log">
       <h1>Welcome to MealMate</h1>
       <p>Your companion for discovering and managing delicious meals.</p>
       
@@ -71,7 +78,7 @@
       </div>
     </main>
     
-    <section class="help-section">
+    <section class="help-section" id="help">
       <h2>How Can We Help?</h2>
       <p>Discover the power of MealMate with these amazing features</p>
       
@@ -95,7 +102,7 @@
     </section>
     
     <!-- FAQ Section -->
-    <section class="faq-section">
+    <section class="faq-section" id="faq">
       <h2>Frequently Asked Questions</h2>
       <p>Everything you need to know about MealMate</p>
       
@@ -197,7 +204,7 @@
       </div>
     </section>
 
-    <footer class="mfp-footer">
+    <footer class="mfp-footer" id="about">
       <div class="mfp-container">
         <div class="mfp-footer-grid">
           <div class="mfp-footer-column">
@@ -244,6 +251,26 @@
 
     <script>
       document.addEventListener('DOMContentLoaded', function() {
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+          anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href').substring(1);
+            const target = document.getElementById(targetId);
+            if (target) {
+              target.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+              });
+              // Update active state in navbar
+              document.querySelectorAll('.middlenav a').forEach(link => {
+                link.classList.remove('active');
+              });
+              this.classList.add('active');
+            }
+          });
+        });
+
         const faqItems = document.querySelectorAll('.faq-item');
         
         faqItems.forEach(item => {
