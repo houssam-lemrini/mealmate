@@ -298,7 +298,7 @@ const recipes = {
         prepTime: 10,
         cookTime: 25,
         servings: 2,
-        videoId: "z2u6Uy5kQjg", // Replace with actual YouTube video ID
+        videoId: "https://youtu.be/zzN5bhc5_PQ?si=icCmNf4c81iyvFan", // Replace with actual YouTube video ID
         ingredients: [
             "2 filets de poulet (150g chacun)",
             "4 cuillères à soupe de sauce BBQ",
