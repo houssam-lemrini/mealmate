@@ -96,7 +96,9 @@ function bindFormLoading() {
         setTimeout(() => {
           btn.classList.remove('loading');
           if (error) error.textContent = '';
-          // Place actual submission here
+          if (form.classList.contains('sign-in-form') || form.classList.contains('sign-up-form')) {
+            window.location.href = '../index.html';
+          }
         }, 900);
       }
     });
@@ -108,4 +110,3 @@ bindPasswordToggles();
 bindPasswordStrength();
 bindConfirmMatch();
 bindFormLoading();
-bindForgotPassword();
