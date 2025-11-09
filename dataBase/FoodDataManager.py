@@ -9,7 +9,7 @@ def getConnection():
     return connector.connect(
         host="localhost",
         user="root",
-        password="noam2005",
+        password="",
         database="MealMate"
     )
 
