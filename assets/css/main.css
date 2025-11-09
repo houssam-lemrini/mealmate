@@ -1,3 +1,8 @@
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px; /* Adjust this value based on your navbar height */
+}
+
 :root {
   /* Primary colours */
   --color-primary: #3066BE;         /* the strong blue */
@@ -817,4 +822,73 @@ body::before {
 
 .mfp-bg-gradient {
   background: var(--gradient-primary);
+}
+
+.middlenav {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(8px);
+  padding: 0.5rem;
+  border-radius: var(--radius);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.middlenav a {
+  color: var(--color-text);
+  text-align: center;
+  padding: 0.6rem 1.2rem;
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 500;
+  border-radius: calc(var(--radius) - 4px);
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+
+.middlenav a::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: var(--gradient-primary);
+  transform: translateX(-50%);
+  transition: width 0.3s ease;
+}
+
+.middlenav a:hover {
+  color: var(--color-primary);
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.middlenav a:hover::before {
+  width: 80%;
+}
+
+.middlenav a.active {
+  background: var(--gradient-primary);
+  color: white;
+  font-weight: 600;
+  box-shadow: var(--shadow-md);
+}
+
+.middlenav a.active::before {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .middlenav {
+    gap: 0.25rem;
+    padding: 0.25rem;
+  }
+
+  .middlenav a {
+    padding: 0.5rem 0.8rem;
+    font-size: 0.9rem;
+  }
 }
