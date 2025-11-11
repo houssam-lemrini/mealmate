@@ -1115,3 +1115,479 @@ body::before {
   .meal-prep .step1 img{ width: 220px; height: auto; }
   .meal-prep .step1 .meal-actions{ margin-left: 0; margin-top: 0.75rem; }
 }
+
+/* Enhanced Mobile Responsive Styles - All Mobile Devices */
+@media (max-width: 640px) {
+  /* HTML & Body */
+  html {
+    scroll-padding-top: 60px;
+  }
+
+  /* Navbar Mobile */
+  .navbar {
+    padding: 0.5rem 1rem;
+    flex-wrap: wrap;
+  }
+
+  .brand-text h2 {
+    font-size: 1rem;
+  }
+
+  .middlenav {
+    gap: 0.15rem;
+    padding: 0.25rem;
+    order: 3;
+    width: 100%;
+    margin-top: 0.5rem;
+  }
+
+  .middlenav a {
+    padding: 0.4rem 0.6rem;
+    font-size: 0.8rem;
+  }
+
+  .right-nav {
+    gap: 8px;
+  }
+
+  .profile-name {
+    display: none;
+  }
+
+  .avatar {
+    width: 28px;
+    height: 28px;
+  }
+
+  /* Hero Section Mobile */
+  .mfp-hero {
+    padding: 2.5rem 1rem;
+  }
+
+  .mfp-hero h1 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  .mfp-hero p {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .mfp-cta {
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+  }
+
+  /* Main Hero Section */
+  .hero {
+    padding: 2rem 1rem;
+  }
+
+  .hero h1 {
+    font-size: 2rem;
+  }
+
+  .hero p {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-content {
+    gap: 1.5rem;
+  }
+
+  .athlete-salad {
+    width: 100%;
+  }
+
+  .athlete-salad .athlete-svg {
+    width: 200px;
+    height: auto;
+  }
+
+  .auth-buttons {
+    width: 100%;
+  }
+
+  .btn-auth {
+    width: 100%;
+    min-width: unset;
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+  }
+
+  /* Help Section Mobile */
+  .help-section {
+    margin-top: 3rem;
+    padding: 2rem 1rem;
+  }
+
+  .help-section h2 {
+    font-size: 1.75rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .help-section p {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .help-features {
+    gap: 1.5rem;
+    max-width: 100%;
+  }
+
+  .help-card {
+    padding: 1.5rem 1rem;
+  }
+
+  .help-card i {
+    font-size: 2rem;
+  }
+
+  .help-card h3 {
+    font-size: 1.1rem;
+  }
+
+  .help-card p {
+    font-size: 0.9rem;
+  }
+
+  /* FAQ Section Mobile */
+  .faq-section {
+    margin-top: 3rem;
+    padding: 2rem 1rem;
+  }
+
+  .faq-section h2 {
+    font-size: 1.75rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .faq-section > p {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .faq-container {
+    max-width: 100%;
+    gap: 0.75rem;
+  }
+
+  .faq-question {
+    padding: 1rem;
+  }
+
+  .faq-question h3 {
+    font-size: 1rem;
+  }
+
+  .faq-icon {
+    font-size: 0.9rem;
+    margin-left: 0.5rem;
+  }
+
+  .faq-item.active .faq-answer {
+    max-height: 400px;
+    padding: 0 1rem 1rem;
+  }
+
+  .faq-answer p {
+    font-size: 0.95rem;
+  }
+
+  /* Tracking Message Mobile */
+  .tracking-msg {
+    margin: 3rem 1rem;
+    padding: 2rem 1rem;
+    gap: 1rem;
+  }
+
+  .tracking-msg h1 {
+    font-size: 1.5rem;
+    margin: 0 0 0.5rem 0;
+  }
+
+  .tracking-msg-card img {
+    max-width: 90%;
+    height: auto;
+  }
+
+  /* Features Grid Mobile */
+  .mfp-features {
+    padding: 2rem 1rem;
+  }
+
+  .mfp-features-grid {
+    max-width: 100%;
+    gap: 1.5rem;
+  }
+
+  .mfp-feature-card {
+    padding: 1.5rem 1rem;
+  }
+
+  .mfp-feature-card i {
+    font-size: 2rem;
+  }
+
+  .mfp-feature-card h3 {
+    font-size: 1.2rem;
+  }
+
+  .mfp-feature-card p {
+    font-size: 0.95rem;
+  }
+
+  /* Health Goals Mobile */
+  .health-goals {
+    padding: 2rem 1rem;
+  }
+
+  .goals-header h2 {
+    font-size: 1.75rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .goals-header p {
+    font-size: 1rem;
+  }
+
+  .goals-steps {
+    gap: 2rem;
+  }
+
+  .goal-step {
+    grid-template-columns: 1fr;
+    padding: 1.5rem 1rem;
+    gap: 1.5rem;
+  }
+
+  .step-number {
+    width: 36px;
+    height: 36px;
+    font-size: 1.2rem;
+  }
+
+  .goal-step-content h3 {
+    font-size: 1.3rem;
+  }
+
+  .goal-step-content p {
+    font-size: 0.95rem;
+  }
+
+  .goal-step-image img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* Meal Prep Mobile */
+  .meal-prep {
+    padding: 2rem 1rem;
+  }
+
+  .meal-prep-intro h4 {
+    font-size: 1.5rem;
+  }
+
+  .meal-prep-intro .motivation {
+    font-size: 1rem;
+  }
+
+  .meal-prep .step1 {
+    padding: 1rem;
+    gap: 1rem;
+  }
+
+  .meal-prep .step1 img {
+    width: 150px;
+    height: 150px;
+  }
+
+  .meal-prep .step1 h3 {
+    font-size: 1.3rem;
+  }
+
+  .meal-prep .step1 .step1-desc {
+    font-size: 0.95rem;
+  }
+
+  /* Footer Mobile */
+  .mfp-footer {
+    padding: 2rem 1rem;
+  }
+
+  .mfp-footer-grid {
+    gap: 1.5rem;
+  }
+
+  .mfp-footer-column h4 {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+  }
+
+  .mfp-footer-links li {
+    margin-bottom: 0.5rem;
+  }
+
+  .mfp-footer-links a {
+    font-size: 0.95rem;
+  }
+
+  .mfp-social-links {
+    gap: 0.75rem;
+  }
+
+  .mfp-social-link {
+    width: 36px;
+    height: 36px;
+    font-size: 0.9rem;
+  }
+
+  /* Container Mobile */
+  .mfp-container {
+    padding: 0 1rem;
+  }
+}
+
+/* Extra Small Mobile Devices (320px - 480px) */
+@media (max-width: 480px) {
+  html {
+    scroll-padding-top: 50px;
+  }
+
+  .navbar {
+    padding: 0.5rem 0.75rem;
+  }
+
+  .brand-text h2 {
+    font-size: 0.9rem;
+  }
+
+  .middlenav a {
+    padding: 0.35rem 0.5rem;
+    font-size: 0.75rem;
+  }
+
+  .mfp-hero h1 {
+    font-size: 1.5rem;
+    line-height: 1.2;
+  }
+
+  .hero h1 {
+    font-size: 1.5rem;
+  }
+
+  .hero p {
+    font-size: 0.9rem;
+  }
+
+  .mfp-cta {
+    padding: 0.7rem 1.2rem;
+    font-size: 0.9rem;
+  }
+
+  .athlete-salad .athlete-svg {
+    width: 150px;
+  }
+
+  .btn-auth {
+    padding: 0.7rem 1rem;
+    font-size: 0.9rem;
+  }
+
+  .help-section h2 {
+    font-size: 1.5rem;
+  }
+
+  .help-card {
+    padding: 1.2rem 0.8rem;
+  }
+
+  .help-card i {
+    font-size: 1.75rem;
+  }
+
+  .help-card h3 {
+    font-size: 1rem;
+  }
+
+  .faq-section h2 {
+    font-size: 1.5rem;
+  }
+
+  .faq-question h3 {
+    font-size: 0.95rem;
+  }
+
+  .tracking-msg h1 {
+    font-size: 1.25rem;
+  }
+
+  .goal-step-content h3 {
+    font-size: 1.2rem;
+  }
+
+  .step-number {
+    width: 32px;
+    height: 32px;
+    font-size: 1rem;
+  }
+
+  .goals-header h2 {
+    font-size: 1.5rem;
+  }
+
+  .meal-prep .step1 img {
+    width: 120px;
+    height: 120px;
+  }
+
+  .meal-prep .step1 h3 {
+    font-size: 1.2rem;
+  }
+
+  .mfp-footer-column h4 {
+    font-size: 1rem;
+  }
+}
+
+/* Landscape Mode (Mobile) */
+@media (max-height: 500px) {
+  .navbar {
+    padding: 0.5rem 1rem;
+  }
+
+  .mfp-hero {
+    padding: 1.5rem 1rem;
+  }
+
+  .hero {
+    padding: 1.5rem 1rem;
+  }
+
+  .hero-content {
+    flex-wrap: nowrap;
+    gap: 1rem;
+  }
+
+  .athlete-salad {
+    flex: 0 0 auto;
+  }
+
+  .athlete-salad .athlete-svg {
+    width: 150px;
+  }
+
+  .auth-buttons {
+    flex-direction: row;
+    gap: 0.75rem;
+  }
+
+  .btn-auth {
+    min-width: auto;
+    padding: 0.6rem 1rem;
+  }
+}
