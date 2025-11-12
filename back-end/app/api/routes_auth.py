@@ -6,14 +6,13 @@ router = APIRouter()
 
 @router.post("/signup")
 def signup(data: UserCreate):
-    user = create_user(data.email, data.password)
+    user = create_user(data.user, data.email, data.password)
     return {"msg": "user created", "user_id": user.id} # type: ignore
 
 @router.post("/signin")
 def signin(data: UserLogin):
-    user = authenticate_user(data.email, data.password)
+    user = authenticate_user(data.user, data.password)
     if not user:
-        raise HTTPException(status_code=400, detail="wrong credentials")
-    # u can generate JWT token here, for now just dummy
+        raise HTTPException(status_code=400, detail="Wrong credentials")
     return {"access_token": "fake-token", "token_type": "bearer"}
 
