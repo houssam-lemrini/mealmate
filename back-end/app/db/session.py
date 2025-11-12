@@ -12,4 +12,3 @@ if not SUPABASE_URL or not SUPABASE_KEY:
     raise Exception("Supabase URL or KEY not set in .env")
 
 supabase = create_client(SUPABASE_URL, SUPABASE_KEY)
-
