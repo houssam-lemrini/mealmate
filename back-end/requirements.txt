@@ -3,4 +3,6 @@ uvicorn
 pydantic
 sqlalchemy
 python-dotenv
-mysql-connector-python
+supabase
+python-dotenv
+Werkzeug
