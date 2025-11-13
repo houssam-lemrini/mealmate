@@ -97,7 +97,8 @@ function bindFormLoading() {
           btn.classList.remove('loading');
           if (error) error.textContent = '';
           if (form.classList.contains('sign-in-form') || form.classList.contains('sign-up-form')) {
-            window.location.href = '../index.html';
+            // Redirect user to the after-login (post auth) page
+            window.location.href = '../after log-sign/index.html';
           }
         }, 900);
       }

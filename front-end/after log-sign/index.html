@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>MealMate — Espace</title>
+    <link rel="stylesheet" href="../assets/css/main.css">
+    <link rel="stylesheet" href="../assets/css/afterlogin.css">
+  </head>
+  <body class="after-login-page">
+    <div class="navbar">
+      <div class="left-nav">
+        <div class="navbar-brand">
+          <div class="logo-container">
+            <img src="../assets/img/company_logo.png" alt="">
+            <div class="logo-gradient"></div>
+          </div>
+        </div>
+        <div class="brand-text" style="font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">
+          <h2>MealMate</h2>
+        </div>
+      </div>
+      <div class="nav-quote" aria-hidden="false" style="flex:1; text-align:center;">
+        <p style="margin:0; font-style:italic; color:var(--color-primary);">« Savourez chaque repas — nourrissez vos objectifs. »</p>
+      </div>
+      <div class="right-nav">
+        <div class="profile">
+          <div class="avatar">
+            <img src="../assets/img/a2020cf5-9244-4244-8b8b-46186a571545.jpg" alt="Profile">
+          </div>
+          <span class="profile-name">Profile</span>
+          <a href="../profile/index.html" aria-label="Go to profile"><i class="fa-solid fa-user"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <main class="al-main al-container">
+      <aside class="al-sidebar">
+        <h2 class="sidebar-title">Menu</h2>
+        <ul class="al-tabs" role="tablist">
+          <li><button class="tab-btn active" data-tab="supermarche" role="tab" aria-selected="true">Supermarché</button></li>
+          <li><button class="tab-btn" data-tab="favoris" role="tab">Favoris</button></li>
+          <li><button class="tab-btn" data-tab="mesplats" role="tab">Ingredients</button></li>
+        </ul>
+      </aside>
+
+      <section class="al-content">
+        <section id="supermarche" class="tab-panel active" role="tabpanel">
+          <h2>Supermarché</h2>
+          <p class="muted">Parcourez les aliments disponibles dans la base. Cliquez sur « Ajouter » pour sauvegarder en favoris ou créer un plat.</p>
+          <div id="products" class="cards-grid"></div>
+
+          <!-- Plate builder: selected items preview + prepare button -->
+          <div id="plateBuilder" style="margin-top:1.25rem;">
+            <h3>Votre Assiette</h3>
+            <div id="platePreview" class="plate-preview">
+              <div id="plateThumbnails" class="plate-thumbs"></div>
+              <div id="plateInfo" class="plate-info muted">Aucun aliment sélectionné</div>
+            </div>
+            <div class="plate-actions" style="margin-top:0.75rem; display:flex; gap:0.75rem; align-items:center;">
+              <button id="prepareMealBtn" class="btn">PREPARE MEAL</button>
+              <button id="clearPlateBtn" class="btn transparent">Réinitialiser l'assiette</button>
+              <div id="prepareStatus" style="margin-left: auto; min-width:220px"></div>
+            </div>
+            <div id="preparedDish" style="margin-top:1rem;"></div>
+          </div>
+        </section>
+
+        <!-- 'Créer un plat' section removed per request -->
+
+        <section id="favoris" class="tab-panel" role="tabpanel">
+          <h2>Favoris</h2>
+          <p class="muted">Vos plats sauvegardés ici pour un accès rapide.</p>
+          <div id="favorites" class="cards-grid"></div>
+        </section>
+
+        <section id="mesplats" class="tab-panel" role="tabpanel">
+          <h2>Plats</h2>
+          <p class="muted">Recherche et prévisualisation des plats fournis par Houssam (branche). Vous pouvez aussi gérer vos ingrédients ici.</p>
+          <div class="search-row">
+            <input id="houssamSearch" type="search" placeholder="Rechercher dans les plats de Houssam...">
+          </div>
+          <div id="houssamDishes" class="cards-grid"></div>
+          <div style="margin-top:1rem;">
+            <h4>Accéder à la page des ingrédients</h4>
+            <iframe src="../page_des_ingredients/index.html" title="Page des ingrédients" style="width:100%;height:520px;border:0;border-radius:10px;box-shadow:0 8px 30px rgba(0,0,0,0.06);"></iframe>
+          </div>
+        </section>
+      </section>
+    </main>
+
+    <footer class="al-footer">
+      <div class="al-container">
+        <span>© MealMate — Bon appétit !</span>
+      </div>
+    </footer>
+
+    <script src="../assets/js/afterlogin.js"></script>
+  </body>
+</html>
