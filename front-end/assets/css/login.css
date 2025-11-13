@@ -39,7 +39,9 @@ input {
   width: 100%;
   background-color: #fff;
   min-height: 100vh;
-  overflow: hidden;
+  /* allow vertical scrolling when viewport is too short for the animated layout */
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .forms-container {
