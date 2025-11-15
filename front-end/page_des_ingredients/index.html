@@ -147,6 +147,21 @@
     <!-- Notification Toast -->
     <div class="toast" id="toast"></div>
 
+    <script>
+        // Hide buttons if page is loaded in an iframe
+        if (window.self !== window.top) {
+            // Page is in an iframe
+            const themeToggle = document.getElementById('themeToggle');
+            const backButton = document.querySelector('.back-button');
+            
+            if (themeToggle) {
+                themeToggle.style.display = 'none';
+            }
+            if (backButton) {
+                backButton.style.display = 'none';
+            }
+        }
+    </script>
     <script src="ingredient.js"></script>
 </body>
 </html>

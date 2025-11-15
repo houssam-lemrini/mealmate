@@ -169,11 +169,13 @@ function toggleTheme() {
     body.setAttribute('data-theme', newTheme);
     localStorage.setItem('theme', newTheme);
     
-    themeToggle.style.transition = 'transform 0.3s ease';
-    themeToggle.style.transform = 'rotate(360deg)';
-    setTimeout(() => {
-        themeToggle.style.transform = 'rotate(0deg)';
-    }, 300);
+    if (themeToggle) {
+        themeToggle.style.transition = 'transform 0.3s ease';
+        themeToggle.style.transform = 'rotate(360deg)';
+        setTimeout(() => {
+            themeToggle.style.transform = 'rotate(0deg)';
+        }, 300);
+    }
 
     showToast(`Mode ${newTheme === 'dark' ? 'sombre' : 'clair'} activé 🌙`, 'success');
 }
@@ -453,7 +455,9 @@ function showToast(message, type = 'success') {
 
 // Event Listeners
 function setupEventListeners() {
-    themeToggle.addEventListener('click', toggleTheme);
+    if (themeToggle) {
+        themeToggle.addEventListener('click', toggleTheme);
+    }
 
     addBtn.addEventListener('click', () => {
         addIngredient(ingredientInput.value);
