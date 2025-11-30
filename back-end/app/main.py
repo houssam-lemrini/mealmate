@@ -2,6 +2,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from app.api.routes_auth import router as auth_router
+from app.api.routes_meals import router as meals_router
 
 app = FastAPI()
 
@@ -15,3 +16,6 @@ app.add_middleware(
 
 # include auth routes
 app.include_router(auth_router)
+
+# include meals routes (AI meal generation)
+app.include_router(meals_router)

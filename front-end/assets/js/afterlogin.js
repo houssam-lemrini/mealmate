@@ -36,6 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	let myDishes = JSON.parse(localStorage.getItem('mm:mydishes') || '[]');
 
 	function renderCards(list, container, options = {}) {
+		if (!container) return;
 		container.innerHTML = '';
 		list.forEach(item => {
 			const card = document.createElement('article');
@@ -63,11 +64,12 @@ document.addEventListener('DOMContentLoaded', () => {
 							<h4 class="card-title">${item.name}</h4>
 							${item.kcal ? `<p class="muted">${item.kcal} kcal</p>` : ''}
 							${item.totals ? `<p class="muted">Calories totales: <strong>${Math.round(item.totals.kcal)}</strong></p>` : ''}
+							${item.description ? `<p class="muted" style="font-size:0.9rem;">${item.description}</p>` : ''}
 						</div>
 					</div>
 					<div class="card-actions">
 						<button class="btn small" data-id="${item.id}" onclick="alert('Ouvrir le plat : ${item.name}')">Voir</button>
-						<button class="btn small" data-id="${item.id}">Retirer</button>
+						<button class="btn small remove-fav" data-id="${item.id}">Retirer</button>
 					</div>
 				`;
 			} else {
@@ -123,29 +125,13 @@ document.addEventListener('DOMContentLoaded', () => {
 			const id = e.target.dataset.id;
 			removeFromPlate(id);
 		}
-	});
 
-	// create dish
-	const createForm = document.getElementById('createForm');
-	createForm && createForm.addEventListener('submit', (e) => {
-		e.preventDefault();
-		const name = document.getElementById('dishName').value.trim();
-		const ingredients = document.getElementById('dishIngredients').value.trim();
-		if (!name) return alert('Donnez un nom au plat');
-		const dish = { id: 'my_' + Date.now(), name, ingredients };
-		myDishes.unshift(dish);
-		localStorage.setItem('mm:mydishes', JSON.stringify(myDishes));
-		document.getElementById('dishName').value = '';
-		document.getElementById('dishIngredients').value = '';
-		renderAll();
-		activateTab('creer');
-	});
-
-	// reset create
-	const resetBtn = document.getElementById('resetCreate');
-	resetBtn && resetBtn.addEventListener('click', () => {
-		document.getElementById('dishName').value = '';
-		document.getElementById('dishIngredients').value = '';
+		if (e.target.matches('.remove-fav')) {
+			const id = e.target.dataset.id;
+			favorites = favorites.filter(f => f.id !== id);
+			localStorage.setItem('mm:favorites', JSON.stringify(favorites));
+			renderAll();
+		}
 	});
 
 	// houssam search
@@ -154,15 +140,6 @@ document.addEventListener('DOMContentLoaded', () => {
 		const q = houssamSearch.value.trim().toLowerCase();
 		const filtered = houssamDishesSample.filter(d => d.name.toLowerCase().includes(q));
 		renderCards(filtered, houssamEl);
-	});
-
-	// global search: switch to supermarket and filter
-	const globalSearch = document.getElementById('globalSearch');
-	globalSearch && globalSearch.addEventListener('input', () => {
-		const q = globalSearch.value.trim().toLowerCase();
-		activateTab('supermarche');
-		const filtered = sampleProducts.filter(p => p.name.toLowerCase().includes(q));
-		renderCards(filtered, productsEl);
 	});
 
 	// Plate builder functions
@@ -178,6 +155,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	}
 
 	function renderPlatePreview() {
+		if (!plateThumbnails || !plateInfo) return;
 		plateThumbnails.innerHTML = '';
 		if (currentPlate.length === 0) {
 			plateInfo.textContent = 'Aucun aliment sélectionné';
@@ -195,49 +173,104 @@ document.addEventListener('DOMContentLoaded', () => {
 		});
 	}
 
-	// Prepare meal animation + calculation
+	// Prepare meal animation + calculation with AI
 	prepareBtn && prepareBtn.addEventListener('click', async () => {
 		if (currentPlate.length === 0) return alert('Sélectionnez d\'abord des aliments pour préparer le plat.');
+		
 		// show progress
-		prepareStatus.innerHTML = `<div class="prep-overlay"><div class="prep-spinner"></div><div class="prep-text">Préparation en cours...</div></div>`;
-		// simulate async processing (2s)
-		await new Promise(r => setTimeout(r, 1800));
-		prepareStatus.innerHTML = '';
-		// compute totals
-		const totals = currentPlate.reduce((acc, it) => {
-			acc.kcal += (it.kcal || 0);
-			acc.protein += (it.protein || 0);
-			acc.carbs += (it.carbs || 0);
-			acc.fat += (it.fat || 0);
-			return acc;
-		}, { kcal: 0, protein: 0, carbs: 0, fat: 0 });
-
-		// generate a simple composed dish card
-		preparedDishEl.innerHTML = `
-			<div class="card">
-				<div style="display:flex;gap:1rem;align-items:center">
-					<div class="dish-canvas">
-						${currentPlate.map(it => `<img src="${it.image || ''}" alt="${it.name}" title="${it.name}">`).join('')}
-					</div>
-					<div style="flex:1">
-						<h3>Plat préparé</h3>
-						<p class="muted">${currentPlate.map(it => it.name).join(' · ')}</p>
-						<ul class="muted" style="margin:0.5rem 0;padding-left:1rem">
-							<li>Calories totales: <strong>${Math.round(totals.kcal)} kcal</strong></li>
-							<li>Protéines: <strong>${(totals.protein).toFixed(1)} g</strong></li>
-							<li>Glucides: <strong>${(totals.carbs).toFixed(1)} g</strong></li>
-							<li>Lipides: <strong>${(totals.fat).toFixed(1)} g</strong></li>
-						</ul>
+		prepareStatus.innerHTML = `<div class="prep-overlay"><div class="prep-spinner"></div><div class="prep-text">L'IA génère votre repas...</div></div>`;
+		prepareBtn.disabled = true;
+		
+		try {
+			// Extract ingredient names
+			const ingredientNames = currentPlate.map(item => item.name);
+			
+			// Call AI API (adjust URL if your backend runs on different port)
+			const backendUrl = 'http://localhost:8000'; // Change if needed
+			const response = await fetch(`${backendUrl}/api/meals/generate`, {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify({ ingredients: ingredientNames })
+			});
+			
+			if (!response.ok) {
+				const errorData = await response.json().catch(() => ({ detail: 'Erreur inconnue' }));
+				throw new Error(errorData.detail || `Erreur HTTP: ${response.status}`);
+			}
+			
+			const data = await response.json();
+			const meal = data.meal;
+			
+			// Clear status
+			prepareStatus.innerHTML = '';
+			prepareBtn.disabled = false;
+			
+			// Display AI-generated meal
+			preparedDishEl.innerHTML = `
+				<div class="card" style="margin-top: 1rem; padding: 1.5rem;">
+					<div style="display: flex; gap: 1.5rem; align-items: flex-start; flex-wrap: wrap;">
+						<div style="flex-shrink: 0;">
+							<img src="${meal.image_url}" alt="${meal.name}" 
+								 style="width: 100%; max-width: 300px; height: 200px; object-fit: cover; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+						</div>
+						<div style="flex: 1; min-width: 300px;">
+							<h3 style="margin-top: 0; color: var(--color-primary, #4CAF50); font-size: 1.5rem;">${meal.name}</h3>
+							<p class="muted" style="margin: 0.75rem 0; line-height: 1.6;">${meal.description}</p>
+							
+							<div style="margin: 1.25rem 0;">
+								<h4 style="font-size: 1.1rem; margin-bottom: 0.75rem; color: var(--color-primary, #4CAF50);">📝 Instructions de préparation:</h4>
+								<ol style="margin: 0; padding-left: 1.5rem; line-height: 1.8;">
+									${meal.instructions.map((step, idx) => `<li style="margin-bottom: 0.75rem;">${step}</li>`).join('')}
+								</ol>
+							</div>
+							
+							${meal.estimated_nutrition ? `
+								<div style="margin-top: 1.25rem; padding: 1rem; background: rgba(76, 175, 80, 0.05); border-radius: 8px; border-left: 4px solid var(--color-primary, #4CAF50);">
+									<h4 style="font-size: 1rem; margin-bottom: 0.75rem; color: var(--color-primary, #4CAF50);">🍎 Valeurs nutritionnelles estimées:</h4>
+									<div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.5rem;">
+										<div><strong>Calories:</strong> ${Math.round(meal.estimated_nutrition.kcal)} kcal</div>
+										<div><strong>Protéines:</strong> ${meal.estimated_nutrition.protein.toFixed(1)} g</div>
+										<div><strong>Glucides:</strong> ${meal.estimated_nutrition.carbs.toFixed(1)} g</div>
+										<div><strong>Lipides:</strong> ${meal.estimated_nutrition.fat.toFixed(1)} g</div>
+									</div>
+								</div>
+							` : ''}
+							
+							<div style="margin-top: 1.25rem; display: flex; gap: 0.75rem; flex-wrap: wrap;">
+								<button class="btn" onclick="addAIMealToFavorites('${meal.name.replace(/'/g, "\\'")}', ${JSON.stringify(meal).replace(/'/g, "\\'")})">
+									<i class="fa-solid fa-heart"></i> Ajouter aux favoris
+								</button>
+								<button class="btn transparent" onclick="clearAIMeal()">
+									<i class="fa-solid fa-xmark"></i> Fermer
+								</button>
+							</div>
+						</div>
 					</div>
 				</div>
-			</div>
-		`;
-
-		// Optionally save to myDishes
-		const dish = { id: 'plate_' + Date.now(), name: 'Plat personnalisé', ingredients: currentPlate.map(i => i.name), totals };
-		myDishes.unshift(dish);
-		localStorage.setItem('mm:mydishes', JSON.stringify(myDishes));
-		renderAll();
+			`;
+			
+			// Optionally save to myDishes
+			const dish = {
+				id: 'ai_' + Date.now(),
+				name: meal.name,
+				description: meal.description,
+				instructions: meal.instructions,
+				image: meal.image_url,
+				ingredients: ingredientNames,
+				totals: meal.estimated_nutrition || {},
+				ai_generated: true
+			};
+			myDishes.unshift(dish);
+			localStorage.setItem('mm:mydishes', JSON.stringify(myDishes));
+			renderAll();
+			
+		} catch (error) {
+			console.error('Error generating meal:', error);
+			prepareStatus.innerHTML = `<div style="color: #d32f2f; padding: 0.75rem; background: rgba(211, 47, 47, 0.1); border-radius: 8px; margin-top: 0.5rem;">❌ Erreur: ${error.message}</div>`;
+			prepareBtn.disabled = false;
+		}
 	});
 
 	clearPlateBtn && clearPlateBtn.addEventListener('click', () => {
@@ -245,6 +278,33 @@ document.addEventListener('DOMContentLoaded', () => {
 		renderPlatePreview();
 		preparedDishEl.innerHTML = '';
 	});
+
+	// Helper function to add AI meal to favorites
+	window.addAIMealToFavorites = function(mealName, mealData) {
+		const favorite = {
+			id: 'fav_ai_' + Date.now(),
+			name: mealName,
+			image: mealData.image_url,
+			description: mealData.description,
+			instructions: mealData.instructions,
+			totals: mealData.estimated_nutrition || {},
+			ai_generated: true
+		};
+		
+		if (!favorites.find(f => f.name === mealName && f.ai_generated)) {
+			favorites.push(favorite);
+			localStorage.setItem('mm:favorites', JSON.stringify(favorites));
+			renderAll();
+			alert('Repas ajouté aux favoris! ✅');
+		} else {
+			alert('Ce repas est déjà dans vos favoris!');
+		}
+	};
+
+	// Helper function to clear AI meal display
+	window.clearAIMeal = function() {
+		preparedDishEl.innerHTML = '';
+	};
 
 	// load ingredients DB then initial render
 	fetch('../assets/db/ingredients.json')
@@ -262,4 +322,3 @@ document.addEventListener('DOMContentLoaded', () => {
 			renderAll();
 		});
 });
-

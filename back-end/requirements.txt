@@ -4,5 +4,6 @@ pydantic
 sqlalchemy
 python-dotenv
 supabase
-python-dotenv
 Werkzeug
+httpx
+google-generativeai
